@@ -3,21 +3,21 @@
         h2.title-research Research updates
             p Description...
         .card-deck.row
-            .card(style='width: 18rem;')
+            .card
                 img.card-img-top(src='images/image.jpg', alt='...')
                 .card-body
                     h5.card-title Card title
                     p.card-text
                     | Some quick example text to build on the card title and make up the bulk of the card's content.
                     a.btn.btn-primary.som(href='#') Go somewhere
-            .card(style='width: 18rem;')
+            .card
                 img.card-img-top(src='images/image.jpg', alt='...')
                 .card-body
                     h5.card-title Card title
                     p.card-text
                     | Some quick example text to build on the card title and make up the bulk of the card's content.
                     a.btn.btn-primary.som(href='#') Go somewhere
-            .card(style='width: 18rem;')
+            .card
                 img.card-img-top(src='images/image.jpg', alt='...')
                 .card-body
                     h5.card-title Card title
