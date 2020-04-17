@@ -85,4 +85,6 @@ export default {
 .btn
   width: 100%
   margin-top: 15px
+.card
+  box-shadow: 16px 20px 9px rgba(0, 0, 0, 0.18)
 </style>
