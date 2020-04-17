@@ -83,6 +83,7 @@ export default {
         grid-column-gap: 30px
 .title-image
     transform: rotate(-5deg)
+    max-width: 400px
 .title-cov
     font-weight: bold
     margin-bottom: 30px
