@@ -17,6 +17,10 @@
                     a.nav-link(href='#cta') Download
 </template>
 
+<script>
+export default {};
+</script>
+
 <style lang="sass" scoped>
 .navbar-brand
     display: flex
