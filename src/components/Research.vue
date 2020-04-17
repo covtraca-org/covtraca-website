@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import 'bulma/sass/utilities/_all'
 
 +touch
@@ -82,4 +82,7 @@ export default {
     p
         font-weight: 100
         font-size: 20px
+.btn
+  width: 100%
+  margin-top: 15px
 </style>
