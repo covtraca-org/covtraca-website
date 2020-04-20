@@ -1,5 +1,6 @@
 <template lang="pug">
     #intro-cov
+        .curve
         .bg-cov-intro
         header-cov
         section.section-home
@@ -29,6 +30,7 @@
 <script>
 import moment from "moment";
 import HeaderCov from "@/views/Header.vue";
+import { TimelineMax, Linear } from "gsap";
 export default {
   components: {
     HeaderCov
@@ -40,13 +42,24 @@ export default {
     day() {
       return moment().format("MMM Do dddd");
     }
+  },
+  mounted() {
+    if (window.innerWidth > 1023) {
+        let tl = new TimelineMax();
+        tl.to(".curve", 10, {
+            scale: 1.1,
+            ease: Linear.easeNone,
+            yoyo: true,
+            repeat: -1
+        });
+        
+    }
   }
 };
 </script>
 
 <style lang="sass">
 @import 'bulma/sass/utilities/_all'
-
 +touch
     .content-title-description
         margin-top: 30px
@@ -108,7 +121,7 @@ export default {
         width: 500px
     #intro-cov
         height: 100vh
-        &::before
+        .curve
             background-size: 70%
             background-position: 100% center
             width: 110%
@@ -145,12 +158,11 @@ export default {
         height: calc(100vh - 60px)
 +fullhd
     #intro-cov
-        &::before
+        .curve
             background-size: 80%
             background-position: 120% -60%
             width: 110%
             height: 160%
-
 .content-hour-people
     background-repeat: no-repeat
     background-size: contain
@@ -191,11 +203,12 @@ export default {
         left: 0
         background-color: #009cde
         z-index: -2
-    &::before, &::after
+    &::after
         content: ''
+    &::after, .curve
         position: absolute
         background-repeat: no-repeat
-    &::before
+    .curve
         top: -70px
         left: 0
         background-image: url(/images/curve.svg)
