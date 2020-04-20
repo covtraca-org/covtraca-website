@@ -7,8 +7,6 @@
                 .row
                     .col-lg-6
                         .content-hour-people
-                            img.people-phone.phone-hidde-mobile(src="/images/people-phone.svg")
-                            img.people-phone.phone-hidde-desktop(src="/images/people-phone-mobile.svg")
                             .hour {{ hour }}
                                 .day {{ day }}
                     .col-lg-6
@@ -67,12 +65,16 @@ export default {
     .hour
         font-size: 22px
         top: 16px
-        left: 64px
-        width: 71px
+        left: 44px
+        width: 67px
         .day
             font-size: 8px
     .people-phone, .content-hour-people
         width: 270px
+    .content-hour-people
+        background-image: url(/images/people-phone-mobile.svg)
+        height: 200px
+        margin: 20px auto
     .title-image
         width: 70%
         &.to-right
@@ -87,6 +89,9 @@ export default {
         line-height: 2rem
         color: #fff
 +desktop
+    .content-hour-people
+        background-image: url(/images/people-phone.svg)
+        height: 400px
     .section-home
         display: flex
         align-items: center
@@ -95,7 +100,7 @@ export default {
     .hour
         font-size: 44px
         top: 26px
-        left: 99px
+        left: 87px
         width: 130px
         .day
             font-size: 14px
@@ -146,6 +151,10 @@ export default {
             width: 110%
             height: 160%
 
+.content-hour-people
+    background-repeat: no-repeat
+    background-size: contain
+    position: relative
 .download-button
     display: flex
     align-items: center
