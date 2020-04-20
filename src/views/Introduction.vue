@@ -7,7 +7,8 @@
                 .row
                     .col-lg-6
                         .content-hour-people
-                            img.people-phone(src="/images/people-phone.svg")                            
+                            img.people-phone.phone-hidde-mobile(src="/images/people-phone.svg")
+                            img.people-phone.phone-hidde-desktop(src="/images/people-phone.svg")
                             .hour {{ hour }}
                                 .day {{ day }}
                     .col-lg-6
