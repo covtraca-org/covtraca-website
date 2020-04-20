@@ -1,7 +1,7 @@
 <template lang="pug">
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
         a.navbar-brand(href='./')
-            img.icon-nav-cov(src='images/1.png', alt='CovTraca icon')
+            img.icon-nav-cov(src='images/logo.svg', alt='CovTraca icon')
             .title-app
                 strong COVTRACA
                 span  Symptom Tracker
