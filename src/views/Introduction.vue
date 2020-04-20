@@ -101,6 +101,7 @@ export default {
     .people-phone, .content-hour-people
         width: 500px
     #intro-cov
+        height: 100vh
         &::before
             background-size: 70%
             background-position: 100% center
