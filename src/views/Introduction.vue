@@ -30,7 +30,10 @@
 <script>
 import moment from "moment";
 import HeaderCov from "@/views/Header.vue";
-import { TimelineMax, Linear } from "gsap";
+import { gsap } from "gsap";
+import { TimelineMax, Linear, CSSPlugin } from "gsap";
+gsap.registerPlugin(CSSPlugin);
+
 export default {
   components: {
     HeaderCov
@@ -45,14 +48,13 @@ export default {
   },
   mounted() {
     if (window.innerWidth > 1023) {
-        let tl = new TimelineMax();
-        tl.to(".curve", 10, {
-            scale: 1.1,
-            ease: Linear.easeNone,
-            yoyo: true,
-            repeat: -1
-        });
-        
+      let tl = new TimelineMax();
+      tl.to(".curve", 10, {
+        scale: 1.1,
+        ease: Linear.easeNone,
+        yoyo: true,
+        repeat: -1
+      });
     }
   }
 };
@@ -171,6 +173,7 @@ export default {
     display: flex
     align-items: center
     justify-content: center
+    font-weight: bold
     svg
         margin-right: 10px
 .hour
