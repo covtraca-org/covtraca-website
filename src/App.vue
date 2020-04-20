@@ -1,19 +1,16 @@
 <template lang="pug">
-  #app
-    header-cov
+  #app    
     router-view
-    footer-cov
+    //footer-cov
 </template>
 
 <script>
-import HeaderCov from "@/views/Header.vue";
-import FooterCov from "@/views/Footer.vue";
+//import FooterCov from "@/views/Footer.vue";
 
 export default {
   name: "Home",
   components: {
-    HeaderCov,
-    FooterCov
+    //FooterCov
   }
 };
 </script>

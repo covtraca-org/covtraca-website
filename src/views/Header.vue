@@ -5,16 +5,12 @@
             .title-app
                 strong COVTRACA
                 span  Symptom Tracker
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo02')
+        //button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarTogglerDemo02')
             span.navbar-toggler-icon
-        #navbarTogglerDemo02.collapse.navbar-collapse
+        //#navbarTogglerDemo02.collapse.navbar-collapse
             ul.navbar-nav.ml-auto
                 li.nav-item
-                    a.nav-link(href='#footer') Contact
-                li.nav-item
-                    a.nav-link(href='#pricing') Pricing
-                li.nav-item
-                    a.nav-link(href='#cta') Download
+                    a.nav-link(href='#!') Report today                
 </template>
 
 <script>
@@ -28,8 +24,12 @@ export default {};
     display: flex
     flex-direction: column
     line-height: 15px
+    color: #fff
 .icon-nav-cov
     height: 30px
     width: 30px
     margin-right: 10px
+nav
+    background-color: transparent !important
+    z-index: 1
 </style>
