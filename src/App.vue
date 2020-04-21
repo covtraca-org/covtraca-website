@@ -8,7 +8,7 @@
 //import FooterCov from "@/views/Footer.vue";
 
 export default {
-  name: "Home",
+  name: "App",
   components: {
     //FooterCov
   }

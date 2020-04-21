@@ -1,0 +1,121 @@
+@import 'bulma/sass/utilities/_all'
++touch
+    ::-webkit-input-placeholder
+        color: #fff
+    :-ms-input-placeholder
+        color: #fff
+    ::placeholder
+        color: #fff
+    .type-question
+        .field
+            label
+                color: #fff
+        input[type="text"], input[type="number"], input[type="tel"], input[type="email"], textarea
+            background-color: transparent
+            color: #ffff
+    .title-question
+        color: #fff
+    .content-button-nav
+        button
+            background: #fff
+            color: #009cde
+            box-shadow: 4px 5px 0px #0a729e
+    .options
+        &.select
+            .option        
+                border: 1px solid #fff
+                color: #fff
+                &.active
+                    background-color: #fff
+                    color: #009cde
++desktop
+    .all-questions
+        padding: 20px
+        border: 3px dashed rgba(0, 156, 222, 0.18)
+        border-radius: 10px
+    .title-question
+        color: #009cde
+    .content-button-nav
+        button
+            background: #009cde
+            color: #fff
+            box-shadow: 4px 5px 0px #0a729e
+    .options
+        &.select
+            .option        
+                border: 1px solid #009cde
+                color: #009cde
+                &.active
+                    background-color: #009cde
+                    color: #fff
+.title-question
+    text-align: center
+    font-weight: bold
+    font-size: 1.5em
+#report-container    
+    display: -webkit-box
+    transition: all .3s ease
+    .question
+        display: flex
+        width: 100%
+        padding: 100px 10px
+        flex-direction: column
+        align-items: center
+        justify-content: center
+.options
+    display: flex
+    margin-top: 20px
+    .option
+        cursor: pointer
+    &.checkbox
+        flex-direction: column
+    &.select
+        .option
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 40px
+            height: 40px
+            border-radius: 50%
+            font-weight: bold
+            margin: 0 10px
+            transition: all .3s ease
+.all-questions
+    overflow: hidden
+    max-width: 600px
+    margin: auto
+.content-button-nav    
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    grid-column-gap: 30px
+    padding: 5px
+    &.full
+        grid-template-columns: repeat(1, 1fr)
+    button        
+        font-weight: bold
+        border: none
+        padding: 5px 0
+        border-radius: 4px
+        transition: all .3s ease
+        outline: none
+        cursor: pointer
+        &:disabled
+            filter: grayscale(1)
+            opacity: .2
+        &:active
+            transform: scale(.9)
+.type-question
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center;    
+    input[type="text"], input[type="number"], input[type="tel"], input[type="email"], textarea        
+        width: 100%
+        border: none
+        border-bottom: 1px solid #d2edfa
+        padding: 5px 10px
+        text-align: center
+        margin-top: 20px
+        outline: none
+.is-checkradio[type=checkbox]:hover:not([disabled])+label::before, .is-checkradio[type=checkbox]:hover:not([disabled])+label:before, .is-checkradio[type=radio]:hover:not([disabled])+label::before, .is-checkradio[type=radio]:hover:not([disabled])+label:before
+    outline: none

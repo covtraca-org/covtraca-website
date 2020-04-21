@@ -1,0 +1,158 @@
+@import 'bulma/sass/utilities/_all'
++touch
+    .content-title-description
+        margin-top: 30px
+    .content-download
+        &.full
+            button
+                color: #fff
+                font-weight: bold
+        .btn-dark
+            background-color: #fff
+            color: #343a40
+            border-color: #fff
+        .btn-outline-dark
+            color: #fff
+            border-color: #fff
+    .hour
+        font-size: 22px
+        top: 16px
+        left: 44px
+        width: 67px
+        .day
+            font-size: 8px
+    .people-phone, .content-hour-people
+        width: 270px
+    .content-hour-people
+        background-image: url(/images/people-phone-mobile.svg)
+        height: 200px
+        margin: 20px auto
+    .title-image
+        width: 70%
+        &.to-right
+            right: -17%
+        &.to-left
+            left: -17%
+        position: relative
+    .phone-hidde-mobile
+        display: none
+    .title-cov
+        font-size: 2rem
+        line-height: 2rem
+        color: #fff
++desktop
+    .black-b        
+        color: #fff !important
+    .content-hour-people
+        background-image: url(/images/people-phone.svg)
+        height: 400px
+    .section-home
+        display: flex
+        align-items: center
+    .content-title-description
+        margin-top: 100px
+    .hour
+        font-size: 44px
+        top: 26px
+        left: 87px
+        width: 130px
+        .day
+            font-size: 14px
+    .people-phone, .content-hour-people
+        width: 500px
+    #intro-cov
+        height: 100vh
+        .curve
+            background-size: 70%
+            background-position: 100% center
+            width: 110%
+            height: 130%
+        &::after
+            background-image: url(/images/burble-right.svg)
+            top: -210px
+            right: -170px
+            width: 440px
+            height: 480px
+            background-size: contain
+    .title-image
+        width: 100%
+        &.to-right
+            right: -10%
+        &.to-left
+            left: -10%
+        position: absolute
+    .phone-hidde-desktop
+        display: none
+    .title-cov
+        font-size: 35px
+        line-height: 35px
+        text-align: right
+    .content-download
+        grid-template-columns: repeat(2, 1fr)
+        grid-column-gap: 30px
+        &.full
+            grid-template-columns: none
+            button
+                color: #009cde
+                font-weight: bold
+    .section-home
+        height: calc(100vh - 60px)
++fullhd
+    #intro-cov
+        .curve
+            background-size: 80%
+            background-position: 120% -60%
+            width: 110%
+            height: 160%
+.content-hour-people
+    background-repeat: no-repeat
+    background-size: contain
+    position: relative
+.download-button
+    display: flex
+    align-items: center
+    justify-content: center
+    font-weight: bold
+    svg
+        margin-right: 10px
+.hour
+    position: absolute
+    color: #fff
+    transform: skewX(13deg) skewY(1deg)
+    text-align: center
+    display: flex
+    flex-direction: column
+    .day
+        width: 100%
+        max-width: 100%
+.title-image
+    transform: rotate(-5deg)
+    max-width: 400px
+.title-cov
+    font-weight: bold
+    position: relative
+.content-download
+    display: grid
+    margin-top: 20px
+    grid-row-gap: 20px
+#intro-cov
+    position: relative
+    overflow: hidden
+    .bg-cov-intro
+        position: fixed
+        width: 100%
+        height: 100%
+        top: -1px
+        left: 0
+        background-color: #009cde
+        z-index: -2
+    &::after
+        content: ''
+    &::after, .curve
+        position: absolute
+        background-repeat: no-repeat
+    .curve
+        top: -5%
+        left: 0%        
+        background-image: url(/images/curve.svg)
+        z-index: -1        
