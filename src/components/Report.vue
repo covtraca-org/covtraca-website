@@ -31,6 +31,7 @@
 import "@/sass/views/report.sass";
 import "bulma-checkradio";
 import axios from "axios";
+import _ from "lodash";
 import { TimelineMax, Linear } from "gsap";
 export default {
   props: {
@@ -69,8 +70,14 @@ export default {
     },
     getQuestions() {
       let vm = this;
-      axios.get("/js/questions.json").then(res => {
-        vm.questions = res.data.questions;
+      axios.get("https://api.covtraca.org/v1/questions").then(res => {
+        vm.questions = res.data.data;
+        _.forEach(vm.questions, q => {
+          let val = JSON.parse(q.value);
+          let opts = JSON.parse(q.options);
+          q.options = opts;
+          q.value = val;
+        });
       });
     },
     handleReport() {

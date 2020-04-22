@@ -12,7 +12,7 @@
 <script>
 import "@/sass/views/introduction.sass";
 import HeaderCov from "@/views/Header.vue";
-import ReportCov from "@/views/Report.vue";
+import ReportCov from "@/components/Report.vue";
 import PhoneCov from "@/components/PhoneDownload.vue";
 import { mapGetters } from "vuex";
 import { gsap } from "gsap";
