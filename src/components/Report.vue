@@ -5,7 +5,7 @@
                 .title-question {{ question.title }}
                 .type-question(v-if="question.type === 'select'")
                     .options(:class="question.type")
-                        .option(v-for="(option, j) in question.options", :class="{ 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ option.title }}
+                        .option(v-for="(option, j) in question.options", :class="{ 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ option.label }}
                 .type-question(v-if="question.type === 'checkbox'")
                     .options(:class="question.type")                        
                         .field(v-for="(option, j) in question.options")
