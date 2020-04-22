@@ -13,7 +13,7 @@
                                 type='checkbox',
                                 :value="option.value",
                                 v-model="question.value")
-                            label(:for="'check-' + question.id + j") {{ option.title }}
+                            label(:for="'check-' + question.id + j") {{ option.label }}
                 .type-question(v-if="checkTypeString(question.type)")                    
                     input(:type="question.type", placeholder="Type here...", @keyup.enter="next")
                 .type-question(v-if="question.type === 'textarea'")
