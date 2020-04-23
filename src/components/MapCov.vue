@@ -102,8 +102,7 @@ export default {
           // return `true` to let the map know that the image was updated
           return true;
         }
-      };
-      console.log(vm.coordinates);
+      };      
       map.on("load", function() {
         map.addImage("pulsing-dot", pulsingDot, { pixelRatio: 2 });
 

@@ -15,8 +15,11 @@ export default {
   },
   methods: {
     handleReport() {
-      if (this.isReporting || this.showMap) {
+      if (this.isReporting) {
         this.$store.dispatch("handleReport");
+      }
+      if (this.showMap) {
+        this.$store.dispatch("handleMap");
       }
       return;
     }
