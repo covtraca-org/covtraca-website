@@ -13,7 +13,7 @@
                     i.fas.fa-paper-plane
                     |  Report now            
                 button.btn.btn-dark-xd.btn-lg.download-button(type='button', @click="handleMap")
-                    i.fas.map-marked-alt
+                    i.fas.fa-map-marked-alt
                     |  View map
             .content-download
                 a.btn.black-b.btn-dark.btn-lg.download-button(type='button')
