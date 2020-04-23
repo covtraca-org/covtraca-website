@@ -1,16 +1,16 @@
 <template lang="pug">
   #app    
     router-view
-    //footer-cov
+    #snackbar(v-if="showToast") {{ getMessage }}
 </template>
 
 <script>
-//import FooterCov from "@/views/Footer.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
-  components: {
-    //FooterCov
+  computed: {
+    ...mapGetters(["showToast", "getMessage"])
   }
 };
 </script>

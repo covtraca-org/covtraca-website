@@ -21,7 +21,7 @@
             color: #009cde
             box-shadow: 4px 5px 0px #0a729e
     .options
-        &.select
+        &.radio
             .option        
                 border: 1px solid #fff
                 color: #fff
@@ -41,7 +41,7 @@
             color: #fff
             box-shadow: 4px 5px 0px #0a729e
     .options
-        &.select
+        &.radio
             .option        
                 border: 1px solid #009cde
                 color: #009cde
@@ -69,7 +69,7 @@
         cursor: pointer
     &.checkbox
         flex-direction: column
-    &.select
+    &.radio
         .option
             display: flex
             align-items: center
@@ -109,7 +109,7 @@
     display: flex
     align-items: center
     justify-content: center;    
-    input[type="text"], input[type="number"], input[type="tel"], input[type="email"], textarea        
+    input[type="text"], input[type="number"], input[type="tel"], input[type="email"], textarea, select
         width: 100%
         border: none
         border-bottom: 1px solid #d2edfa
@@ -117,5 +117,6 @@
         text-align: center
         margin-top: 20px
         outline: none
+        background-color: transparent
 .is-checkradio[type=checkbox]:hover:not([disabled])+label::before, .is-checkradio[type=checkbox]:hover:not([disabled])+label:before, .is-checkradio[type=radio]:hover:not([disabled])+label::before, .is-checkradio[type=radio]:hover:not([disabled])+label:before
     outline: none

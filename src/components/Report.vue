@@ -4,6 +4,10 @@
             .question(v-for="(question, i) in questions", :key="i")            
                 .title-question {{ question.title }}
                 .type-question(v-if="question.type === 'select'")
+                  select(v-model="question.value", @change="next")
+                    option(:value="null", disabled) Choose a option
+                    option(v-for="(option, j) in question.options", :value="option.value") {{ option.label }}
+                .type-question(v-if="question.type === 'radio'")
                     .options(:class="question.type")
                         .option(v-for="(option, j) in question.options", :class="{ 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ option.label }}
                 .type-question(v-if="question.type === 'checkbox'")
@@ -19,7 +23,7 @@
                 .type-question(v-if="question.type === 'textarea'")
                     textarea(placeholder="Type here...")
         .send(v-else)
-            .title-question Thanks for test
+            .title-question Your report has been sent, thanks for contributing
             .content-button-nav.full
                 button(@click="handleReport") Back
         .content-button-nav(v-if="!sended")
@@ -33,6 +37,7 @@ import "bulma-checkradio";
 import axios from "axios";
 import _ from "lodash";
 import { TimelineMax, Linear } from "gsap";
+
 export default {
   props: {
     curve: {
@@ -44,7 +49,12 @@ export default {
       newCurve: null,
       questions: [],
       step: 1,
-      sended: false
+      sended: false,
+      user_report: {
+        answer: [],
+        lat: "",
+        long: ""
+      }
     };
   },
   computed: {
@@ -80,6 +90,26 @@ export default {
         });
       });
     },
+    sendReport() {
+      let vm = this;
+
+      _.forEach(vm.questions, q => {
+        vm.user_report.answer.push({
+          id: q.id,
+          value: q.value
+        });
+      });
+
+      let ans = JSON.stringify(vm.user_report.answer)
+
+      vm.user_report.answer = ans
+
+      axios
+        .post("https://api.covtraca.org/v1/reports", vm.user_report)
+        .then(() => {
+          vm.sended = true;
+        });
+    },
     handleReport() {
       this.$store.dispatch("setIsAuthenticated");
     },
@@ -100,11 +130,28 @@ export default {
           "report-container"
         ).style.transform = `translateX(calc(-100% * ${vm.step - 1})`;
       } else {
-        vm.sended = true;
+        vm.sendReport();
         document.getElementById(
           "report-container"
         ).style.transform = `translateX(calc(0%)`;
       }
+    },
+    getLocation() {
+      let vm = this
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(vm.showPosition);
+      } else {
+        vm.$store.dispatch("handleToast");
+        setTimeout(() => {
+          vm.$store.dispatch("handleToast");
+        }, 3000)
+        this.$store.dispatch("setMessage", "Geolocation is not supported by this browser.");
+      }
+    },
+    showPosition(position) {
+      let vm = this;
+      vm.user_report.lat = position.coords.latitude;
+      vm.user_report.long = position.coords.longitude;
     }
   },
   mounted() {
@@ -119,6 +166,7 @@ export default {
       });
     }
     this.getQuestions();
+    this.getLocation();
   },
   destroyed() {
     let vm = this;
