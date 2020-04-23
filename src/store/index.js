@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     isReporting: false,
     showToast: false,
+    showMap: false,
     message: ""
   },
   mutations: {
@@ -16,16 +17,22 @@ export default new Vuex.Store({
     setToast(state, payload) {
       state.showToast = payload;
     },
+    setMap(state, payload) {
+      state.showMap = payload;
+    },
     setMessage(state, payload) {
       state.message = payload;
     }
   },
   actions: {
-    setIsAuthenticated({ commit, state }) {
+    handleReport({ commit, state }) {
       commit("setReport", !state.isReporting);
     },
+    handleMap({ commit, state }) {
+      commit("setMap", !state.showMap);
+    },
     handleToast({ commit, state }) {
-      commit("setToast", !state.showToast);
+      commit("setToast", !state.showMap);
     },
     changeMessage({ commit }, { message }) {
       commit("setMessage", message);
@@ -38,6 +45,9 @@ export default new Vuex.Store({
     },
     showToast: state => {
       return state.showToast;
+    },
+    showMap: state => {
+      return state.showMap;
     },
     getMessage: state => {
       return state.message;

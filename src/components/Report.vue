@@ -111,7 +111,7 @@ export default {
         });
     },
     handleReport() {
-      this.$store.dispatch("setIsAuthenticated");
+      this.$store.dispatch("handleReport");
     },
     prev() {
       let vm = this;

@@ -1,6 +1,6 @@
 <template lang="pug">
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand(:href='false', @click="handleReport", :class="{ 'reporting' : isReporting }")
+        a.navbar-brand(:href='false', @click="handleReport", :class="{ 'reporting' : isReporting, 'showing-map' : showMap }")
             img.icon-nav-cov(src='images/logo-blue.svg', alt='CovTraca icon')            
             .title-app
                 strong COVTRACA
@@ -11,12 +11,12 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["isReporting"])
+    ...mapGetters(["isReporting", "showMap"])
   },
   methods: {
     handleReport() {
-      if (this.isReporting) {
-        this.$store.dispatch("setIsAuthenticated");
+      if (this.isReporting || this.showMap) {
+        this.$store.dispatch("handleReport");
       }
       return;
     }
@@ -28,8 +28,9 @@ export default {
 @import 'bulma/sass/utilities/_all'
 +desktop
     .navbar-brand
-        &.reporting
+        &.reporting, &.showing-map
             cursor: pointer
+        &.reporting
             .icon-nav-cov
                 filter: none
             .title-app

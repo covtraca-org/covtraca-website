@@ -6,13 +6,14 @@
         section.section-home
             .container-fluid
                 transition(name="component-fade", mode="out-in")
-                    component(:is="view", :curve="isReporting ? curveMax : ''")
+                    component(:is="view", :curve="isReporting || showMap ? curveMax : ''")
 </template>
 
 <script>
 import "@/sass/views/introduction.sass";
 import HeaderCov from "@/views/Header.vue";
 import ReportCov from "@/components/Report.vue";
+import MapCov from "@/components/MapCov.vue";
 import PhoneCov from "@/components/PhoneDownload.vue";
 import { mapGetters } from "vuex";
 import { gsap } from "gsap";
@@ -23,22 +24,28 @@ export default {
   components: {
     HeaderCov,
     ReportCov,
-    PhoneCov
+    PhoneCov,
+    MapCov
   },
   data() {
     return {
       curveMax: null,
-      newCurve: null
+      newCurve: null,
+      step: 1
     };
   },
   computed: {
-    ...mapGetters(["isReporting"]),
+    ...mapGetters(["isReporting", "showMap"]),
     view() {
-      if (!this.isReporting) {
-        return "phone-cov";
-      } else {
+      if (this.showMap) {
+        return "map-cov";
+      }
+
+      if (this.isReporting) {
         return "report-cov";
       }
+
+      return "phone-cov";
     }
   },
   mounted() {

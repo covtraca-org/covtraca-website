@@ -11,7 +11,10 @@
             .content-download.full
                 button.btn.btn-dark-xd.btn-lg.download-button(type='button', @click="handleReport")
                     i.fas.fa-paper-plane
-                    |  Report now
+                    |  Report now            
+                button.btn.btn-dark-xd.btn-lg.download-button(type='button', @click="handleMap")
+                    i.fas.map-marked-alt
+                    |  View map
             .content-download
                 a.btn.black-b.btn-dark.btn-lg.download-button(type='button')
                     i.fab.fa-apple
@@ -34,8 +37,10 @@ export default {
   },
   methods: {
     handleReport() {
-      let vm = this;
-      vm.$store.dispatch("setIsAuthenticated");
+      this.$store.dispatch("handleReport");
+    },
+    handleMap() {
+      this.$store.dispatch("handleMap");
     }
   }
 };
