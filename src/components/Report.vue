@@ -19,8 +19,8 @@
                                 v-model="question.value")
                             label(:for="'check-' + question.id + j") {{ option.label }}
                 .type-question(v-if="checkTypeString(question.type)")                    
-                    input(:type="question.type", placeholder="Type here...", @keyup.enter="next")
-                .type-question(v-if="question.type === 'textarea'")
+                    input(:type="question.type", placeholder="Type here...", @keyup.enter="next", v-model="question.value")
+                .type-question(v-if="question.type === 'textarea'", v-model="question.value")
                     textarea(placeholder="Type here...")
         .send(v-else)
             .title-question Your report has been sent, thanks for contributing
@@ -100,9 +100,9 @@ export default {
         });
       });
 
-      let ans = JSON.stringify(vm.user_report.answer)
+      let ans = JSON.stringify(vm.user_report.answer);
 
-      vm.user_report.answer = ans
+      vm.user_report.answer = ans;
 
       axios
         .post("https://api.covtraca.org/v1/reports", vm.user_report)
@@ -137,15 +137,18 @@ export default {
       }
     },
     getLocation() {
-      let vm = this
+      let vm = this;
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(vm.showPosition);
       } else {
         vm.$store.dispatch("handleToast");
         setTimeout(() => {
           vm.$store.dispatch("handleToast");
-        }, 3000)
-        this.$store.dispatch("setMessage", "Geolocation is not supported by this browser.");
+        }, 3000);
+        this.$store.dispatch(
+          "setMessage",
+          "Geolocation is not supported by this browser."
+        );
       }
     },
     showPosition(position) {
