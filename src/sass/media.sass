@@ -1,8 +1,29 @@
 @import 'bulma/sass/utilities/_all';
 
 +desktop
+    .curve-container
+        height: 100vh
+        .curve
+            background-size: 70%
+            background-position: 100% center
+            width: 110%
+            height: 130%
+        &::after
+            background-image: url(/images/burble-right.svg)
+            top: -210px
+            right: -170px
+            width: 440px
+            height: 480px
+            background-size: contain
     .container-fluid, .container-sm, .container-md, .container-lg, .container-xl
         padding: 7% 10%
 +touch
     .container-fluid, .container-sm, .container-md, .container-lg, .container-xl
         padding: 7% 20px
++fullhd
+    .curve-container
+        .curve
+            background-size: 80%
+            background-position: 120% -60%
+            width: 110%
+            height: 160%

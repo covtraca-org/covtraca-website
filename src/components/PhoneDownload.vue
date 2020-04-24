@@ -37,10 +37,10 @@ export default {
   },
   methods: {
     handleReport() {
-      this.$store.dispatch("handleReport");
+      this.$router.push("report");
     },
     handleMap() {
-      this.$store.dispatch("handleMap");
+      this.$router.push("map");
     }
   }
 };

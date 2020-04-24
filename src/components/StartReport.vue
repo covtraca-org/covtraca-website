@@ -1,0 +1,186 @@
+<template lang="pug">
+    .all-questions
+        #report-container(v-if="!sended")
+            .question(v-for="(question, i) in questions", :key="i")            
+                .title-question {{ question.title }}
+                .type-question(v-if="question.type === 'select'")
+                  select(v-model="question.value", @change="next")
+                    option(:value="null", disabled) Choose a option
+                    option(v-for="(option, j) in question.options", :value="option.value") {{ option.label }}
+                .type-question(v-if="question.type === 'radio'")
+                    .options(:class="question.type")
+                        .option(v-for="(option, j) in question.options", :class="{ 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ option.label }}
+                .type-question(v-if="question.type === 'checkbox'")
+                    .options(:class="question.type")                        
+                        .field(v-for="(option, j) in question.options")
+                            input.is-checkradio(:id="'check-' + question.id + j",
+                                type='checkbox',
+                                :value="option.value",
+                                v-model="question.value")
+                            label(:for="'check-' + question.id + j") {{ option.label }}
+                .type-question(v-if="checkTypeString(question.type)")                    
+                    input(:type="question.type", placeholder="Type here...", @keyup.enter="next", v-model="question.value")
+                .type-question(v-if="question.type === 'textarea'", v-model="question.value")
+                    textarea(placeholder="Type here...")
+        .send(v-else)
+            .title-question Your report has been sent, thanks for contributing
+            .content-button-nav.full
+                button(@click="handleReport") Back
+        .content-button-nav(v-if="!sended")
+            button(@click="prev", :disabled="step <= 1") Prev
+            button(@click="next") Next
+</template>
+
+<script>
+import "@/sass/views/report.sass";
+import "bulma-checkradio";
+import axios from "axios";
+import _ from "lodash";
+import { TimelineMax, Linear } from "gsap";
+import { mapGetters } from "vuex";
+
+export default {
+  data() {
+    return {
+      newCurve: null,
+      questions: [],
+      step: 1,
+      sended: false,
+      user_report: {
+        answer: [],
+        lat: "",
+        long: ""
+      }
+    };
+  },
+  computed: {
+    stepsLeft() {
+      return this.questions.length;
+    },
+    ...mapGetters(["getCurve"])
+  },
+  methods: {
+    checkTypeString(t) {
+      switch (t) {
+        case "text":
+        case "number":
+        case "email":
+        case "tel":
+          return true;
+        default:
+          return false;
+      }
+    },
+    setValue(q, v) {
+      q.value = v;
+      this.next();
+    },
+    getQuestions() {
+      let vm = this;
+      axios.get("https://api.covtraca.org/v1/questions").then(res => {
+        vm.questions = res.data.data;
+        _.forEach(vm.questions, q => {
+          let val = JSON.parse(q.value);
+          let opts = JSON.parse(q.options);
+          q.options = opts;
+          q.value = val;
+        });
+      });
+    },
+    sendReport() {
+      let vm = this;
+
+      _.forEach(vm.questions, q => {
+        vm.user_report.answer.push({
+          id: q.id,
+          value: q.value
+        });
+      });
+
+      let ans = JSON.stringify(vm.user_report.answer);
+
+      vm.user_report.answer = ans;
+
+      axios
+        .post("https://api.covtraca.org/v1/reports", vm.user_report)
+        .then(() => {
+          vm.sended = true;
+        });
+    },
+    handleReport() {
+      this.$store.dispatch("handleReport");
+    },
+    prev() {
+      let vm = this;
+      if (vm.step > 1) {
+        vm.step--;
+        document.getElementById(
+          "report-container"
+        ).style.transform = `translateX(calc(-100% * ${vm.step - 1})`;
+      }
+    },
+    next() {
+      let vm = this;
+      if (vm.step < vm.stepsLeft) {
+        vm.step++;
+        document.getElementById(
+          "report-container"
+        ).style.transform = `translateX(calc(-100% * ${vm.step - 1})`;
+      } else {
+        vm.sendReport();
+        document.getElementById(
+          "report-container"
+        ).style.transform = `translateX(calc(0%)`;
+      }
+    },
+    getLocation() {
+      let vm = this;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(vm.showPosition);
+      } else {
+        vm.$store.dispatch("handleToast");
+        setTimeout(() => {
+          vm.$store.dispatch("handleToast");
+        }, 3000);
+        this.$store.dispatch(
+          "setMessage",
+          "Geolocation is not supported by this browser."
+        );
+      }
+    },
+    showPosition(position) {
+      let vm = this;
+      vm.user_report.lat = position.coords.latitude;
+      vm.user_report.long = position.coords.longitude;
+    }
+  },
+  mounted() {
+    if (window.innerWidth > 1023) {
+      this.getCurve.pause();
+      this.newCurve = new TimelineMax();
+      this.newCurve.to(".curve", 1, {
+        left: "-70%",
+        top: "-50%",
+        scale: 3,
+        ease: Linear.ease
+      });
+    }
+    this.getQuestions();
+    this.getLocation();
+  },
+  destroyed() {
+    let vm = this;
+    if (window.innerWidth > 1023) {
+      setTimeout(() => {
+        vm.getCurve.resume();
+      }, 1100);
+      vm.newCurve.to(".curve", 1, {
+        left: "0%",
+        top: "-5%",
+        scale: 1,
+        ease: Linear.ease
+      });
+    }
+  }
+};
+</script>

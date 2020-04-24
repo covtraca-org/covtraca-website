@@ -7,11 +7,11 @@ import axios from "axios";
 import _ from "lodash";
 import mapboxgl from "mapbox-gl";
 import { TimelineMax, Linear } from "gsap";
+import { mapGetters } from "vuex";
+
 export default {
-  props: {
-    curve: {
-      type: Object
-    }
+  computed: {
+    ...mapGetters(["getCurve"])
   },
   data() {
     return {
@@ -44,7 +44,8 @@ export default {
         "pk.eyJ1IjoiY292dHJhY2EiLCJhIjoiY2s5Y3liNXVmMDkyODNocDVzdGxvaXZqeCJ9.I-oXd16J5u_HVtr3gL8QPA";
       var map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/mapbox/streets-v9"
+        style: "mapbox://styles/mapbox/streets-v11",
+        zoom: 1.5
       });
 
       var size = 200;
@@ -102,7 +103,7 @@ export default {
           // return `true` to let the map know that the image was updated
           return true;
         }
-      };      
+      };
       map.on("load", function() {
         map.addImage("pulsing-dot", pulsingDot, { pixelRatio: 2 });
 
@@ -126,7 +127,7 @@ export default {
   },
   mounted() {
     if (window.innerWidth > 1023) {
-      this.curve.pause();
+      this.getCurve.pause();
       this.newCurve = new TimelineMax();
       this.newCurve.to(".curve", 1, {
         left: "-70%",
@@ -142,7 +143,7 @@ export default {
     let vm = this;
     if (window.innerWidth > 1023) {
       setTimeout(() => {
-        vm.curve.resume();
+        vm.getCurve.resume();
       }, 1100);
       vm.newCurve.to(".curve", 1, {
         left: "0%",

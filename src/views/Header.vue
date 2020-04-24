@@ -15,6 +15,9 @@ export default {
   },
   methods: {
     handleReport() {
+      if (this.showMap || this.isReporting) {
+        this.$router.push("/");
+      }
       if (this.isReporting) {
         this.$store.dispatch("handleReport");
       }

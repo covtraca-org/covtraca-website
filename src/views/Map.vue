@@ -1,17 +1,19 @@
-<template lang="pug">                
+<template lang="pug">    
       section.section-home
           .container-fluid
-              phone-cov
+              map-cov
 </template>
 
 <script>
 import "@/sass/views/introduction.sass";
-
-import PhoneCov from "@/components/PhoneDownload.vue";
+import MapCov from "@/components/MapCov.vue";
 
 export default {
   components: {
-    PhoneCov
+    MapCov
+  },
+  mounted() {
+    this.$store.dispatch("handleMap");
   }
 };
 </script>

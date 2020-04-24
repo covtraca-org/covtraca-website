@@ -8,6 +8,7 @@ export default new Vuex.Store({
     isReporting: false,
     showToast: false,
     showMap: false,
+    curveMax: null,
     message: ""
   },
   mutations: {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setMessage(state, payload) {
       state.message = payload;
+    },
+    setCurve(state, payload) {
+      state.curveMax = payload;
     }
   },
   actions: {
@@ -36,6 +40,9 @@ export default new Vuex.Store({
     },
     changeMessage({ commit }, { message }) {
       commit("setMessage", message);
+    },
+    changeCurve({ commit }, { curve }) {
+      commit("setCurve", curve);
     }
   },
   modules: {},
@@ -51,6 +58,9 @@ export default new Vuex.Store({
     },
     getMessage: state => {
       return state.message;
+    },
+    getCurve: state => {
+      return state.curveMax;
     }
   }
 });
