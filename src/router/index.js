@@ -1,8 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-//import Home from "../views/Home.vue";
-//import Map from "../views/Map.vue";
-//import Report from "../views/Report.vue";
 
 Vue.use(VueRouter);
 
@@ -10,14 +7,12 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () =>
-      import(/* webpackChunkName: "home" */ "../views/Home.vue")
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
   },
   {
     path: "/map",
     name: "map",
-    component: () =>
-      import(/* webpackChunkName: "map" */ "../views/Map.vue")
+    component: () => import(/* webpackChunkName: "map" */ "../views/Map.vue")
   },
   {
     path: "/report",

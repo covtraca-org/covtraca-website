@@ -6,8 +6,10 @@
 import axios from "axios";
 import _ from "lodash";
 import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { TimelineMax, Linear } from "gsap";
 import { mapGetters } from "vuex";
+import CountryCodes from "@/assets/country_codes.json";
 
 export default {
   computed: {
@@ -17,7 +19,10 @@ export default {
     return {
       newCurve: null,
       reports: [],
-      coordinates: []
+      worldReport: null,
+      GlobalUsers: [],
+      CovTracaUsers: [],
+      map: null
     };
   },
   methods: {
@@ -27,7 +32,7 @@ export default {
         vm.reports = res.data.data;
         _.forEach(vm.reports, r => {
           if (r.lat != null && r.long != null) {
-            vm.coordinates.push({
+            vm.CovTracaUsers.push({
               type: "Feature",
               geometry: {
                 type: "Point",
@@ -38,11 +43,86 @@ export default {
         });
       });
     },
+    getCountryReports() {
+      let vm = this;
+      axios.get("https://api.covid19api.com/summary").then(res => {
+        vm.worldReport = res.data;
+        _.forEach(vm.worldReport.Countries, r => {
+          let search_country = _.find(CountryCodes, s => {
+            return s.country_code == r.CountryCode;
+          });
+
+          if (search_country && r.TotalConfirmed > 0) {
+            vm.GlobalUsers.push({
+              type: "Feature",
+              properties: {
+                description: `
+                  <div class="report-country">
+                    <h1>${r.Country}</h1>
+                    <div class="progress-report">
+                      <div class="progess-slice red" style="width:${100 *
+                        (r.TotalConfirmed /
+                          (r.TotalConfirmed +
+                            r.TotalRecovered +
+                            r.TotalDeaths / 100))}%"></div>
+                      <div class="progess-slice green" style="width:${100 *
+                        (r.TotalRecovered /
+                          (r.TotalConfirmed +
+                            r.TotalRecovered +
+                            r.TotalDeaths / 100))}%"></div>
+                      <div class="progess-slice black not-margin" style="width:${100 *
+                        (r.TotalDeaths /
+                          (r.TotalConfirmed +
+                            r.TotalRecovered +
+                            r.TotalDeaths / 100))}%"></div>
+                    </div>
+                    <div class="content-info-country">
+                      <div class="content-title-country red">
+                        <span class="circle-status"></span>
+                        <div class="title-report">Active cases: </div class="title-report">
+                        <div class="count-covid">                          
+                          <span class="total-report">${r.TotalConfirmed}</span>
+                          <span class="new-report">+${r.NewConfirmed}</span>
+                        </div>
+                      </div>
+                      <div class="content-title-country green">
+                        <span class="circle-status"></span>
+                        <div class="title-report">Recovered cases: </div class="title-report">
+                        <div class="count-covid">
+                          <span class="total-report">${r.TotalRecovered}</span>
+                          <span class="new-report">+${r.NewRecovered}</span>
+                        </div>
+                      </div>
+                      <div class="content-title-country black">
+                        <span class="circle-status"></span>
+                        <div class="title-report">Deadly cases: </div class="title-report">
+                        <div class="count-covid">
+                          <span class="total-report">${r.TotalDeaths}</span>
+                          <span class="new-report">+${r.NewDeaths}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  `
+              },
+              geometry: {
+                type: "Point",
+                coordinates: [
+                  search_country.latlng[1],
+                  search_country.latlng[0]
+                ]
+              }
+            });
+          }
+        });
+        vm.renderMap();
+      });
+    },
     renderMap() {
       let vm = this;
       mapboxgl.accessToken =
         "pk.eyJ1IjoiY292dHJhY2EiLCJhIjoiY2s5Y3liNXVmMDkyODNocDVzdGxvaXZqeCJ9.I-oXd16J5u_HVtr3gL8QPA";
-      var map = new mapboxgl.Map({
+      vm.map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         zoom: 1.5
@@ -63,26 +143,8 @@ export default {
 
         // called once before every frame where the icon will be used
         render: function() {
-          var duration = 1000;
-          var t = (performance.now() % duration) / duration;
-
           var radius = (size / 2) * 0.3;
-          var outerRadius = (size / 2) * 0.7 * t + radius;
           var context = this.context;
-
-          // draw outer circle
-          context.clearRect(0, 0, this.width, this.height);
-          context.beginPath();
-          context.arc(
-            this.width / 2,
-            this.height / 2,
-            outerRadius,
-            0,
-            Math.PI * 2
-          );
-          //context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
-          context.fillStyle = "rgba(0, 156, 222," + (1 - t) + ")";
-          context.fill();
 
           // draw inner circle
           context.beginPath();
@@ -90,31 +152,101 @@ export default {
           //context.fillStyle = 'rgba(255, 100, 100, 1)';
           context.fillStyle = "rgba(0, 156, 222, 1)";
           context.strokeStyle = "white";
-          context.lineWidth = 2 + 4 * (1 - t);
           context.fill();
           context.stroke();
 
           // update this image's data with data from the canvas
           this.data = context.getImageData(0, 0, this.width, this.height).data;
-
-          // continuously repaint the map, resulting in the smooth animation of the dot
-          map.triggerRepaint();
-
-          // return `true` to let the map know that the image was updated
           return true;
         }
       };
-      map.on("load", function() {
-        map.addImage("pulsing-dot", pulsingDot, { pixelRatio: 2 });
 
-        map.addSource("points", {
+      var infectedDot = {
+        width: size,
+        height: size,
+        data: new Uint8Array(size * size * 4),
+        onAdd: function() {
+          var canvas = document.createElement("canvas");
+          canvas.width = this.width;
+          canvas.height = this.height;
+          this.context = canvas.getContext("2d");
+        },
+
+        // called once before every frame where the icon will be used
+        render: function() {
+          var radius = (size / 2) * 0.3;
+          var context = this.context;
+
+          // draw inner circle
+          context.beginPath();
+          context.arc(this.width / 2, this.height / 2, radius, 0, Math.PI * 2);
+          context.fillStyle = "rgba(255, 100, 100, 1)";
+          context.strokeStyle = "rgba(255, 100, 100, 1)";
+          context.fill();
+          context.stroke();
+
+          // update this image's data with data from the canvas
+          this.data = context.getImageData(0, 0, this.width, this.height).data;
+          return true;
+        }
+      };
+
+      vm.map.on("load", function() {
+        vm.map.addImage("pulsing-dot", pulsingDot, { pixelRatio: 8 });
+        vm.map.addImage("infected-dot", infectedDot, { pixelRatio: 8 });
+
+        vm.map.addSource("infecteds", {
           type: "geojson",
           data: {
             type: "FeatureCollection",
-            features: vm.coordinates
+            features: vm.GlobalUsers
           }
         });
-        map.addLayer({
+
+        vm.map.addLayer({
+          id: "infecteds",
+          type: "symbol",
+          source: "infecteds",
+          layout: {
+            "icon-image": "infected-dot"
+          }
+        });
+        vm.map.on("click", "infecteds", function(e) {
+          console.log(e.features[0].geometry.coordinates.slice());
+          console.log(e.features[0].properties.description);
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var description = e.features[0].properties.description;
+
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(vm.map);
+        });
+        vm.map.on("mouseenter", "infecteds", function() {
+          vm.map.getCanvas().style.cursor = "pointer";
+        });
+
+        // Change it back to a pointer when it leaves.
+        vm.map.on("mouseleave", "infecteds", function() {
+          vm.map.getCanvas().style.cursor = "";
+        });
+
+        vm.map.addSource("points", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: vm.CovTracaUsers
+          }
+        });
+
+        vm.map.addLayer({
           id: "points",
           type: "symbol",
           source: "points",
@@ -136,8 +268,8 @@ export default {
         ease: Linear.ease
       });
     }
+    this.getCountryReports();
     this.getReports();
-    this.renderMap();
   },
   destroyed() {
     let vm = this;
@@ -156,6 +288,74 @@ export default {
 };
 </script>
 <style lang="sass">
+.progress-report
+  display: flex
+  margin-bottom: 10px
+  .progess-slice
+    height: 6px
+    border-radius: 6px
+    margin-right: 5px
+    &.not-margin
+      margin-right: 0px
+    &.red
+      background-color: #f46363
+    &.green
+      background-color: rgb(96, 187, 105)
+    &.black
+      background-color: rgb(118, 118, 118)
+.mapboxgl-map
+  font-family: 'Phantom Sans' !important
+.mapboxgl-popup-content
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15) !important
+  border-radius: 6px !important
+.title-report
+  font-weight: bold
+  display: flex
+.content-title-country
+  display: grid
+  grid-template-columns: 8px auto min-content
+  align-items: center
+  grid-gap: 16px 8px
+  margin-bottom: 5px
+  .circle-status
+    width: 8px
+    height: 8px
+    border-radius: 8px
+  &.red
+    .circle-status
+      background-color: #f46363
+    .title-report
+      color: #f46363
+  &.green
+    .circle-status
+      background-color: rgb(96, 187, 105)
+    .title-report
+      color: rgb(96, 187, 105)
+  &.black
+    .circle-status
+      background-color: rgb(118, 118, 118)
+    .title-report
+      color: rgb(118, 118, 118)
+  .count-covid
+    margin-left: 30px
+    display: flex
+    align-items: center
+    color: #4f4f4f
+    .new-report
+      background-color: #F5F5F5
+      padding: 2px 6px
+      border-radius: 3px
+.total-report
+  margin: 0 10px
+.report-country
+  display: flex
+  flex-direction: column
+  padding: 5px
+  h1
+    text-align: center
+    font-size: 2em
+    margin-bottom: 10px
+    font-weight: bold
 .map-cov
     height: 100vh
     width: 100vw
@@ -165,4 +365,7 @@ export default {
 #map
     width: 100%
     height: 100%
+    position: absolute
+    top: 0
+    left: 0
 </style>
