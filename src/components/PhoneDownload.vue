@@ -6,22 +6,24 @@
                     .day {{ day }}
         .col-lg-6                            
             .content-title-description
-                .title-cov Help stop the spread of COVID-19
-                .title-cov Take 1 minute each day
+                .title-cov {{ $t('subtitleOne') }}
+                .title-cov {{ $t('subtitleTwo') }}
+            .description-app(v-html="$t('descriptionAppHome')")
             .content-download.full
                 button.btn.btn-dark-xd.btn-lg.download-button(type='button', @click="handleReport")
                     i.fas.fa-paper-plane
-                    |  Report now            
+                    span.report-text {{ $t('reportButton') }}
+                      span ({{ $t('subInfoReportButton') }})
                 button.btn.btn-dark-xd.btn-lg.download-button(type='button', @click="handleMap")
                     i.fas.fa-map-marked-alt
-                    |  View map
+                    | {{ $t('viewMapButton') }}
             .content-download
                 a.btn.black-b.btn-dark.btn-lg.download-button(type='button')
                     i.fab.fa-apple
-                    |  Download
+                    | {{ $t('getIOSApp') }}
                 a.btn.btn-outline-dark.btn-lg.download-button(type='button')
                     i.fab.fa-google-play
-                    |  Download
+                    | {{ $t('getAndroidApp') }}
 </template>
 
 <script>

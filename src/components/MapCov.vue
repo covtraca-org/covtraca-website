@@ -124,7 +124,7 @@ export default {
         "pk.eyJ1IjoiY292dHJhY2EiLCJhIjoiY2s5Y3liNXVmMDkyODNocDVzdGxvaXZqeCJ9.I-oXd16J5u_HVtr3gL8QPA";
       vm.map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/mapbox/streets-v11",
+        style: "mapbox://styles/mapbox/dark-v10",
         zoom: 1.5
       });
 

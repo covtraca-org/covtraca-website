@@ -1,6 +1,10 @@
 @import 'bulma/sass/utilities/_all';
 
 +desktop
+    .description-app
+        text-align: right
+        b::before
+            background-image: url(/images/logo-black.svg)
     .content-title-country
         font-size: 18px
         .count-covid
@@ -24,6 +28,11 @@
     .container-fluid, .container-sm, .container-md, .container-lg, .container-xl
         padding: 7% 10%
 +touch
+    .description-app
+        text-align: justify
+        color: #fff
+        b::before
+            background-image: url(/images/logo.svg)
     .content-title-country
         font-size: 12px
         .count-covid

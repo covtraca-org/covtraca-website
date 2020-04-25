@@ -61,6 +61,28 @@ body, html
         z-index: -1        
 .mapboxgl-control-container
   display: none
+.report-text
+  display: flex
+  flex-direction: column
+  span
+    font-size: 10px
+.description-app
+  font-size: 1em
+  margin-top: 22px
+  b
+    position: relative
+    padding-left: 22px
+    &::before
+      content: ''
+      position: absolute
+      width: 17px
+      height: 17px
+      background-repeat: no-repeat
+      background-size: contain
+      background-position: center
+      top: 0
+      left: 0      
+
 @-webkit-keyframes fadein
   from
     bottom: 0

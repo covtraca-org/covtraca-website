@@ -21,7 +21,7 @@
             color: #009cde
             box-shadow: 4px 5px 0px #0a729e
     .options
-        &.radio
+        &.select
             .option        
                 border: 1px solid #fff
                 color: #fff
@@ -41,7 +41,7 @@
             color: #fff
             box-shadow: 4px 5px 0px #0a729e
     .options
-        &.radio
+        &.select
             .option        
                 border: 1px solid #009cde
                 color: #009cde
@@ -69,7 +69,9 @@
         cursor: pointer
     &.checkbox
         flex-direction: column
-    &.radio
+        .field
+            margin-bottom: 5px
+    &.select        
         .option
             display: flex
             align-items: center
@@ -80,6 +82,11 @@
             font-weight: bold
             margin: 0 10px
             transition: all .3s ease
+            &.is-large-text
+                width: auto
+                border-radius: 5px
+                padding: 0 10px
+                margin-bottom: 20px
 .all-questions
     overflow: hidden
     max-width: 600px

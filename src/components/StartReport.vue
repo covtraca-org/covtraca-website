@@ -2,22 +2,18 @@
     .all-questions
         #report-container(v-if="!sended")
             .question(v-for="(question, i) in questions", :key="i")            
-                .title-question {{ question.title }}
+                .title-question {{ $t(question.i18n) }}                
                 .type-question(v-if="question.type === 'select'")
-                  select(v-model="question.value", @change="next")
-                    option(:value="null", disabled) Choose a option
-                    option(v-for="(option, j) in question.options", :value="option.value") {{ option.label }}
-                .type-question(v-if="question.type === 'radio'")
                     .options(:class="question.type")
-                        .option(v-for="(option, j) in question.options", :class="{ 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ option.label }}
+                        .option(v-for="(option, j) in question.options", :class="{ 'is-large-text' : option.label.length > 4, 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ $t(option.i18n) }}
                 .type-question(v-if="question.type === 'checkbox'")
                     .options(:class="question.type")                        
                         .field(v-for="(option, j) in question.options")
                             input.is-checkradio(:id="'check-' + question.id + j",
                                 type='checkbox',
-                                :value="option.value",
+                                :value="option.id",
                                 v-model="question.value")
-                            label(:for="'check-' + question.id + j") {{ option.label }}
+                            label(:for="'check-' + question.id + j") {{ $t(option.i18n) }}
                 .type-question(v-if="checkTypeString(question.type)")                    
                     input(:type="question.type", placeholder="Type here...", @keyup.enter="next", v-model="question.value")
                 .type-question(v-if="question.type === 'textarea'", v-model="question.value")
@@ -25,10 +21,10 @@
         .send(v-else)
             .title-question Your report has been sent, thanks for contributing
             .content-button-nav.full
-                button(@click="handleReport") Back
+                button(@click="handleReport") {{ $t('backButton') }}
         .content-button-nav(v-if="!sended")
-            button(@click="prev", :disabled="step <= 1") Prev
-            button(@click="next") Next
+            button(@click="prev", :disabled="step <= 1") {{ $t('prevButton') }}
+            button(@click="next") {{ $t('nextButton') }}
 </template>
 
 <script>
@@ -80,10 +76,13 @@ export default {
       axios.get("https://api.covtraca.org/v1/questions").then(res => {
         vm.questions = res.data.data;
         _.forEach(vm.questions, q => {
-          let val = JSON.parse(q.value);
+          if (q.type == "checkbox") {
+            q["value"] = [];
+          } else {
+            q["value"] = "";
+          }
           let opts = JSON.parse(q.options);
           q.options = opts;
-          q.value = val;
         });
       });
     },
