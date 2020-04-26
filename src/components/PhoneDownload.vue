@@ -1,6 +1,6 @@
 <template lang="pug">
 	.row
-		.col-lg-6
+		.col-lg-6.flex-end
 			.content-hour-people
 				.hour {{ hour }}
 					.day {{ day }}
