@@ -38,7 +38,13 @@ const ES_messages = {
   activeCases: "Casos activos",
   recoveredCases: "Casos recuperados",
   deadlyCases: "Casos mortales",
-  chooseLanguage: "Selecciona tu idioma"
+  chooseLanguage: "Selecciona tu idioma",
+  permissionDenied: "El usuario denegó la solicitud de geolocalización.",
+  positionUnavailable: "La información de ubicación no está disponible.",
+  timeout:
+    "Se agotó el tiempo de espera de la solicitud para obtener la ubicación del usuario.",
+  unknownError: "Un error desconocido ocurrió.",
+  descriptionApp: "Rastreador de síntomas"
 };
 
 export default ES_messages;

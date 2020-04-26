@@ -37,7 +37,12 @@ const EN_messages = {
   activeCases: "Active cases",
   recoveredCases: "Recovered cases",
   deadlyCases: "Deadly cases",
-  chooseLanguage: "Select your language"
+  chooseLanguage: "Select your language",
+  permissionDenied: "User denied the request for Geolocation.",
+  positionUnavailable: "Location information is unavailable.",
+  timeout: "The request to get user location timed out.",
+  unknownError: "An unknown error occurred.",
+  descriptionApp: "Symptom Tracker"
 };
 
 export default EN_messages;

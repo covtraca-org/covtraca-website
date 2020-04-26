@@ -40,7 +40,7 @@ export default new Vuex.Store({
       commit("setMap", !state.showMap);
     },
     handleToast({ commit, state }) {
-      commit("setToast", !state.showMap);
+      commit("setToast", !state.showToast);
     },
     changeMessage({ commit }, { message }) {
       commit("setMessage", message);

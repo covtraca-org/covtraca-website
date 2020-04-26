@@ -4,7 +4,7 @@
 			img.icon-nav-cov(src='images/logo-blue.svg', alt='CovTraca icon')
 			.title-app
 				strong COVTRACA
-				span  Symptom Tracker
+				span  {{ $t('descriptionApp') }}
 		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar')
 			span.navbar-toggler-icon
 		#navbar.collapse.navbar-collapse
@@ -96,6 +96,8 @@ export default {
 	color: #fff
 	transition: color .3s ease
 	transition-delay: 1s
+	span
+		padding-top: 4px
 .icon-nav-cov
 	height: 30px
 	width: 30px

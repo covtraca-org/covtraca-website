@@ -37,7 +37,12 @@ const VI_messages = {
   activeCases: "Trường hợp hoạt động",
   recoveredCases: "Trường hợp phục hồi",
   deadlyCases: "Những vụ án chết người",
-  chooseLanguage: "Chọn ngôn ngữ của bạn"
+  chooseLanguage: "Chọn ngôn ngữ của bạn",
+  permissionDenied: "Người dùng từ chối yêu cầu Định vị địa lý.",
+  positionUnavailable: "Thông tin vị trí không có sẵn.",
+  timeout: "Yêu cầu để có được vị trí người dùng đã hết thời gian.",
+  unknownError: "Một lỗi không xác định đã xảy ra.",
+  descriptionApp: "Theo dõi triệu chứng"
 };
 
 export default VI_messages;

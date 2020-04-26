@@ -19,7 +19,7 @@
                 .type-question(v-if="question.type === 'textarea'", v-model="question.value")
                     textarea(placeholder="Type here...")
         .send(v-else)
-            .title-question Your report has been sent, thanks for contributing
+            .title-question {{ $t('thanksMessage') }}
             .content-button-nav.full
                 button(@click="handleReport") {{ $t('backButton') }}
         .content-button-nav(v-if="!sended")
@@ -135,17 +135,42 @@ export default {
     getLocation() {
       let vm = this;
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(vm.showPosition);
+        navigator.geolocation.getCurrentPosition(vm.showPosition, vm.showError);
       } else {
         vm.$store.dispatch("handleToast");
-        setTimeout(() => {
-          vm.$store.dispatch("handleToast");
-        }, 3000);
         this.$store.dispatch(
           "setMessage",
           "Geolocation is not supported by this browser."
         );
+        setTimeout(() => {
+          vm.$store.dispatch("handleToast");
+        }, 5000);
       }
+    },
+    showError(error) {
+      let vm = this;
+      let message = "";
+      vm.$store.dispatch("handleToast");
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          message = "permissionDenied";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          message = "positionUnavailable";
+          break;
+        case error.TIMEOUT:
+          message = "timeout";
+          break;
+        case error.UNKNOWN_ERROR:
+          message = "unknownError";
+          break;
+      }
+      this.$store.dispatch("changeMessage", {
+        message
+      });
+      setTimeout(() => {
+        vm.$store.dispatch("handleToast");
+      }, 5000);
     },
     showPosition(position) {
       let vm = this;

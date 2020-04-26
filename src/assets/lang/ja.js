@@ -37,7 +37,12 @@ const JP_messages = {
   activeCases: "アクティブなケース",
   recoveredCases: "回収されたケース",
   deadlyCases: "致命的な事件",
-  chooseLanguage: "言語を選択してください"
+  chooseLanguage: "言語を選択してください",
+  permissionDenied: "ユーザーは地理位置情報の要求を拒否しました。",
+  positionUnavailable: "位置情報は利用できません。",
+  timeout: "ユーザーの位置を取得するリクエストがタイムアウトしました。",
+  unknownError: "不明なエラーが発生しました。",
+  descriptionApp: "症状トラッカー"
 };
 
 export default JP_messages;

@@ -7,7 +7,7 @@
     header-cov
     transition(name="component-fade", mode="out-in")
       router-view
-    #snackbar(v-if="showToast") {{ getMessage }}
+    #snackbar(:class="{ 'show': showToast }") {{ $t(getMessage) }}
 </template>
 
 <script>
