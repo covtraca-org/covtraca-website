@@ -33,9 +33,8 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["getLang"]),
-    hour() {
-      moment.locale(this.getLang);
-      return `${moment().hour()}:${moment().minutes()}`;
+    hour() {      
+      return moment.format('LT');
     },
     day() {
       moment.locale(this.getLang);

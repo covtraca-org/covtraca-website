@@ -108,6 +108,7 @@ export default {
     },
     handleReport() {
       this.$store.dispatch("handleReport");
+      this.$router.push("/");
     },
     prev() {
       let vm = this;
