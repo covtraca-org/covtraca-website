@@ -37,7 +37,8 @@ const ES_messages = {
   done: "Listo",
   activeCases: "Casos activos",
   recoveredCases: "Casos recuperados",
-  deadlyCases: "Casos mortales"
+  deadlyCases: "Casos mortales",
+  chooseLanguage: "Selecciona tu idioma"
 };
 
 export default ES_messages;

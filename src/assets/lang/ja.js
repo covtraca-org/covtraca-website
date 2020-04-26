@@ -36,7 +36,8 @@ const JP_messages = {
   done: "完了",
   activeCases: "アクティブなケース",
   recoveredCases: "回収されたケース",
-  deadlyCases: "致命的な事件"
+  deadlyCases: "致命的な事件",
+  chooseLanguage: "言語を選択してください"
 };
 
 export default JP_messages;

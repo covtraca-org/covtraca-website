@@ -9,9 +9,10 @@
 			span.navbar-toggler-icon
 		#navbar.collapse.navbar-collapse
 			ul.navbar-nav.ml-auto
-				li.nav-item
+				li.nav-
+					span.lang-change {{ $t('chooseLanguage') }}
 					select(@change="setLang", v-model="lang")
-						option(disabled, value="") Choose your language
+						option(disabled, value="") {{ $t('chooseLanguage') }}
 						option(value="en") English
 						option(value="es") Español
 						option(value="vi") tiếng việt
@@ -64,7 +65,20 @@ export default {
 
 <style lang="sass" scoped>
 @import 'bulma/sass/utilities/_all'
++touch
+	.lang-change
+		margin-top: 10px
+		display: block
+		padding-left: 3px
+		color: #fff
+	select
+		width: 100%
+		padding: 5px 0px
 +desktop
+	.lang-change
+		display: none
+	select
+		max-width: 80px
 	.navbar-brand
 		&.reporting, &.showing-map
 			cursor: pointer
@@ -97,7 +111,6 @@ select
 	color: #fff
 	border: none
 	outline: none
-	max-width: 80px
 	font-weight: bold
 	option
 		color: #4f4f4f

@@ -36,7 +36,8 @@ const VI_messages = {
   done: "Hoàn thành",
   activeCases: "Trường hợp hoạt động",
   recoveredCases: "Trường hợp phục hồi",
-  deadlyCases: "Những vụ án chết người"
+  deadlyCases: "Những vụ án chết người",
+  chooseLanguage: "Chọn ngôn ngữ của bạn"
 };
 
 export default VI_messages;

@@ -354,7 +354,7 @@ export default {
       background-color: rgb(118, 118, 118)
     .title-report
       color: rgb(118, 118, 118)
-  .count-covid    
+  .count-covid
     display: flex
     align-items: center
     color: #4f4f4f
