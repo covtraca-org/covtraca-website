@@ -1,4 +1,5 @@
 const ES_messages = {
+  nameLang: "Español",
   subtitleOne: "Ayuda a detener la propagación de COVID-19",
   subtitleTwo: "Toma 1 minuto cada día",
   descriptionAppHome:
@@ -35,9 +36,9 @@ const ES_messages = {
   aboutUs:
     "Somos una comunidad global que lucha contra la propagación de COVID-19. Su participación nos permitirá hacer crecer nuestra aplicación y comenzar a ayudar con el distanciamiento global y la contención del virus.",
   done: "Listo",
-  activeCases: "Casos activos",
-  recoveredCases: "Casos recuperados",
-  deadlyCases: "Casos mortales",
+  activeCases: "Confirmados",
+  recoveredCases: "Recuperados",
+  deadlyCases: "Mortales",
   chooseLanguage: "Selecciona tu idioma",
   permissionDenied: "El usuario denegó la solicitud de geolocalización.",
   positionUnavailable: "La información de ubicación no está disponible.",

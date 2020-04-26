@@ -1,4 +1,5 @@
 const VI_messages = {
+  nameLang: "tiếng việt",
   subtitleOne: "Giúp ngăn chặn sự lây lan của COVID-19",
   subtitleTwo: "Dành 1 phút mỗi ngày",
   descriptionAppHome:

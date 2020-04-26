@@ -13,11 +13,7 @@
 					span.lang-change {{ $t('chooseLanguage') }}
 					select(@change="setLang", v-model="lang")
 						option(disabled, value="") {{ $t('chooseLanguage') }}
-						option(value="en") English
-						option(value="es") Español
-						option(value="vi") tiếng việt
-						option(value="ja") 日本語
-						//option(value="rs") русский
+						option(:value="lang.value", v-for="(lang, index) in getLangs", :key="index") {{ lang.name }}
 
 </template>
 
@@ -31,7 +27,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["isReporting", "showMap"])
+    ...mapGetters(["isReporting", "showMap", "getLangs"])
   },
   methods: {
     handleReport() {
@@ -50,6 +46,7 @@ export default {
       i18n.locale = this.lang;
       localStorage.setItem("lang", this.lang);
       this.$store.dispatch("changeLang", { locale: this.lang });
+      this.$store.dispatch("addLang", { langs: i18n.vm.data });
     }
   },
   mounted() {

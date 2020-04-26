@@ -10,7 +10,8 @@ export default new Vuex.Store({
     showMap: false,
     curveMax: null,
     message: "",
-    lang: ""
+    lang: "",
+    langs: []
   },
   mutations: {
     setReport(state, payload) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     setLang(state, payload) {
       state.lang = payload;
+    },
+    setLangs(state, payload) {
+      state.langs = payload;
     }
   },
   actions: {
@@ -50,6 +54,9 @@ export default new Vuex.Store({
     },
     changeLang({ commit }, { locale }) {
       commit("setLang", locale);
+    },
+    addLang({ commit }, { langs }) {
+      commit("setLangs", langs);
     }
   },
   modules: {},
@@ -71,6 +78,9 @@ export default new Vuex.Store({
     },
     getLang: state => {
       return state.lang;
+    },
+    getLangs: state => {
+      return state.langs;
     }
   }
 });

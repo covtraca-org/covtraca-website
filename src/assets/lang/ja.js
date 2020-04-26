@@ -1,4 +1,5 @@
 const JP_messages = {
+  nameLang: "日本語",
   subtitleOne: "COVID-19の蔓延を阻止する",
   subtitleTwo: "毎日1分かかる",
   descriptionAppHome:
