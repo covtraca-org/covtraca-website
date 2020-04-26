@@ -34,9 +34,9 @@ const VI_messages = {
   aboutUs:
     "Chúng tôi là một cộng đồng toàn cầu chống lại sự lây lan của COVID-19. Sự tham gia của bạn sẽ cho phép chúng tôi phát triển ứng dụng của chúng tôi và bắt đầu hỗ trợ ngăn chặn và ngăn chặn virus toàn cầu",
   done: "Hoàn thành",
-  activeCases: "",
-  recoveredCases: "",
-  deadlyCases: ""
+  activeCases: "Trường hợp hoạt động",
+  recoveredCases: "Trường hợp phục hồi",
+  deadlyCases: "Những vụ án chết người"
 };
 
 export default VI_messages;
