@@ -1,15 +1,34 @@
 <template lang="pug">
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand(:href='false', @click="handleReport", :class="{ 'reporting' : isReporting, 'showing-map' : showMap }")
-            img.icon-nav-cov(src='images/logo-blue.svg', alt='CovTraca icon')            
-            .title-app
-                strong COVTRACA
-                span  Symptom Tracker            
+	nav.navbar.navbar-expand-lg.navbar-light.bg-light
+		a.navbar-brand(:href='false', @click="handleReport", :class="{ 'reporting' : isReporting, 'showing-map' : showMap }")
+			img.icon-nav-cov(src='images/logo-blue.svg', alt='CovTraca icon')
+			.title-app
+				strong COVTRACA
+				span  Symptom Tracker
+		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar')
+			span.navbar-toggler-icon
+		#navbar.collapse.navbar-collapse
+			ul.navbar-nav.ml-auto
+				li.nav-item
+					select(@change="setLang", v-model="lang")
+						option(disabled, value="") Choose your language
+						option(value="en") English
+						option(value="es") Español
+						option(value="vi") tiếng việt
+						option(value="ja") 日本語
+						//option(value="rs") русский
+
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import i18n from "@/plugins/i18n";
 export default {
+  data() {
+    return {
+      lang: "en"
+    };
+  },
   computed: {
     ...mapGetters(["isReporting", "showMap"])
   },
@@ -25,6 +44,19 @@ export default {
         this.$store.dispatch("handleMap");
       }
       return;
+    },
+    setLang() {
+      i18n.locale = this.lang;
+      localStorage.setItem("lang", this.lang);
+      this.$store.dispatch("changeLang", { locale: this.lang });
+    }
+  },
+  mounted() {
+    if (localStorage.getItem("lang") == null) {
+      localStorage.setItem("lang", this.lang);
+    } else {
+      this.lang = localStorage.getItem("lang");
+      this.setLang();
     }
   }
 };
@@ -33,31 +65,40 @@ export default {
 <style lang="sass" scoped>
 @import 'bulma/sass/utilities/_all'
 +desktop
-    .navbar-brand
-        &.reporting, &.showing-map
-            cursor: pointer
-        &.reporting
-            .icon-nav-cov
-                filter: none
-            .title-app
-                color: #009cde
+	.navbar-brand
+		&.reporting, &.showing-map
+			cursor: pointer
+		&.reporting
+			.icon-nav-cov
+				filter: none
+			.title-app
+				color: #009cde
 .navbar-brand
-    display: flex
+	display: flex
 .title-app
-    display: flex
-    flex-direction: column
-    line-height: 15px
-    color: #fff
-    transition: color .3s ease
-    transition-delay: 1s
+	display: flex
+	flex-direction: column
+	line-height: 15px
+	color: #fff
+	transition: color .3s ease
+	transition-delay: 1s
 .icon-nav-cov
-    height: 30px
-    width: 30px
-    margin-right: 10px
-    transition: filter .3s ease
-    transition-delay: 1s
-    filter: brightness(0) invert(1)
+	height: 30px
+	width: 30px
+	margin-right: 10px
+	transition: filter .3s ease
+	transition-delay: 1s
+	filter: brightness(0) invert(1)
 nav
-    background-color: transparent !important
-    z-index: 1
+	background-color: transparent !important
+	z-index: 1
+select
+	background-color: transparent
+	color: #fff
+	border: none
+	outline: none
+	max-width: 80px
+	font-weight: bold
+	option
+		color: #4f4f4f
 </style>

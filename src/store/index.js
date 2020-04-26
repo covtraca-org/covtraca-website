@@ -9,7 +9,8 @@ export default new Vuex.Store({
     showToast: false,
     showMap: false,
     curveMax: null,
-    message: ""
+    message: "",
+    lang: ""
   },
   mutations: {
     setReport(state, payload) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     setCurve(state, payload) {
       state.curveMax = payload;
+    },
+    setLang(state, payload) {
+      state.lang = payload;
     }
   },
   actions: {
@@ -43,6 +47,9 @@ export default new Vuex.Store({
     },
     changeCurve({ commit }, { curve }) {
       commit("setCurve", curve);
+    },
+    changeLang({ commit }, { locale }) {
+      commit("setLang", locale);
     }
   },
   modules: {},
@@ -61,6 +68,9 @@ export default new Vuex.Store({
     },
     getCurve: state => {
       return state.curveMax;
+    },
+    getLang: state => {
+      return state.lang;
     }
   }
 });

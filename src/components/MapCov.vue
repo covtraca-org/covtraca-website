@@ -1,5 +1,5 @@
 <template lang="pug">
-    .map-cov
+    .map-cov      
         #map
 </template>
 <script>
@@ -12,6 +12,20 @@ import { mapGetters } from "vuex";
 import CountryCodes from "@/assets/country_codes.json";
 
 export default {
+  props: {
+    activeCaseText: {
+      type: String,
+      required: true
+    },
+    recoveredCaseText: {
+      type: String,
+      required: true
+    },
+    deadlyCaseText: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
     ...mapGetters(["getCurve"])
   },
@@ -79,7 +93,9 @@ export default {
                     <div class="content-info-country">
                       <div class="content-title-country red">
                         <span class="circle-status"></span>
-                        <div class="title-report">Active cases: </div class="title-report">
+                        <div class="title-report">${
+                          vm.activeCaseText
+                        } </div class="title-report">
                         <div class="count-covid">                          
                           <span class="total-report">${r.TotalConfirmed}</span>
                           <span class="new-report">+${r.NewConfirmed}</span>
@@ -87,7 +103,9 @@ export default {
                       </div>
                       <div class="content-title-country green">
                         <span class="circle-status"></span>
-                        <div class="title-report">Recovered cases: </div class="title-report">
+                        <div class="title-report">${
+                          vm.recoveredCaseText
+                        } </div class="title-report">
                         <div class="count-covid">
                           <span class="total-report">${r.TotalRecovered}</span>
                           <span class="new-report">+${r.NewRecovered}</span>
@@ -95,7 +113,9 @@ export default {
                       </div>
                       <div class="content-title-country black">
                         <span class="circle-status"></span>
-                        <div class="title-report">Deadly cases: </div class="title-report">
+                        <div class="title-report">${
+                          vm.deadlyCaseText
+                        } </div class="title-report">
                         <div class="count-covid">
                           <span class="total-report">${r.TotalDeaths}</span>
                           <span class="new-report">+${r.NewDeaths}</span>
@@ -212,8 +232,6 @@ export default {
           }
         });
         vm.map.on("click", "infecteds", function(e) {
-          console.log(e.features[0].geometry.coordinates.slice());
-          console.log(e.features[0].properties.description);
           var coordinates = e.features[0].geometry.coordinates.slice();
           var description = e.features[0].properties.description;
 

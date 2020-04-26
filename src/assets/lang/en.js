@@ -6,6 +6,7 @@ const EN_messages = {
   reportButton: "Report today",
   subInfoReportButton: "even if you're well",
   viewMapButton: "View map",
+  downloadApp: "Download our mobile application",
   getIOSApp: "Get on App Store",
   getAndroidApp: "Get on Play Store",
   yes: "Yes",
@@ -32,7 +33,10 @@ const EN_messages = {
     "Thank you for your help and vital contribution to the study of COVID-19",
   aboutUs:
     "We are a global community fighting the spread of COVID-19. Your participation will allow us to grow our application and begin assisting with global distancing and containment of the virus",
-  done: "Done"
+  done: "Done",
+  activeCases: "Active cases",
+  recoveredCases: "Recovered cases",
+  deadlyCases: "Deadly cases"
 };
 
 export default EN_messages;

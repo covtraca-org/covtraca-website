@@ -1,15 +1,19 @@
 @import 'bulma/sass/utilities/_all'
 +touch
+    .download-text-app
+        span
+            color: #fff
     .content-title-description
         margin-top: 30px
     .content-download
         &.full
             button
-                color: #fff
+                background-color: #fff
                 font-weight: bold
+                color: #4f4f4f
         .btn-dark
             background-color: #fff
-            color: #343a40
+            color: #4f4f4f
             border-color: #fff
         .btn-outline-dark
             color: #fff
@@ -41,6 +45,11 @@
         line-height: 2rem
         color: #fff
 +desktop
+    .btn-outline-dark
+        color: #4f4f4f !important
+    .download-text-app
+        span
+            color: #4f4f4f
     .black-b        
         color: #fff !important
     .content-hour-people
@@ -78,11 +87,19 @@
         grid-column-gap: 30px
         &.full
             button
-                color: #009cde
+                //color: #009cde
+                color: #ffff
+                background-color: #009cde
                 font-weight: bold
+                &:hover
+                    background-color: #0071bc
     .section-home
         height: calc(100vh - 60px)
 
+.btn-outline-dark
+    border-color: #4f4f4f
+    &:hover
+        color: #fff !important
 .content-hour-people
     background-repeat: no-repeat
     background-size: contain
@@ -114,3 +131,20 @@
     display: grid
     margin-top: 20px
     grid-row-gap: 20px
+.download-text-app    
+    margin: 40px auto 20px auto
+    border-radius: 5px
+    width: max-content
+    padding: 10px
+    background: hsla(0,0%,100%,.4)
+    box-shadow: 0 10px 24px rgba(8,15,26,.16)
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(10px)
+    text-align: center
+    width: 100%
+    span
+        font-size: 1.5em
+        font-weight: bold
+.btn-dark
+    color: #4f4f4f
+    background-color: #4f4f4f    
