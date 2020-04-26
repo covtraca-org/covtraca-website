@@ -34,7 +34,7 @@ export default {
   computed: {
     ...mapGetters(["getLang"]),
     hour() {      
-      return moment().format('LT');
+      return moment().format('HH:mm');
     },
     day() {
       moment.locale(this.getLang);
