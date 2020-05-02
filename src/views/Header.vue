@@ -84,6 +84,8 @@ export default {
 				filter: none
 			.title-app
 				color: #009cde
+.navbar-collapse
+	position: relative
 .navbar-brand
 	display: flex
 .title-app

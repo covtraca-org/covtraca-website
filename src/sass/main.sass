@@ -1,5 +1,5 @@
-body, html
-  font-family: "Phantom Sans"
+body, html, *
+  font-family: "Phantom Sans", sans-serif
 
 .align-center
   display: flex
@@ -32,9 +32,9 @@ body, html
     bottom: 30px
     opacity: 1
 .base-curve
-  position: fixed
+  position: absolute
   width: 100%
-  height: 100%
+  height: 100vh
   top: 0
   left: 0
 
@@ -48,15 +48,12 @@ body, html
         top: -1px
         left: 0
         background-color: #009cde
-        z-index: -2
-    &::after
-        content: ''
-    &::after, .curve
+        z-index: -2    
+    .curve, .corner-right
         position: absolute
-        background-repeat: no-repeat
     .curve
-        top: -5%
-        left: 0%        
+        background-repeat: no-repeat        
+        left: -7%
         background-image: url(/images/curve.svg)
         z-index: -1        
 .mapboxgl-control-container
@@ -88,39 +85,14 @@ body, html
     border-color: #ffff
   .navbar-toggler-icon 
     background-image: url(/images/menu.svg)
-
-@-webkit-keyframes fadein
-  from
-    bottom: 0
-    opacity: 0
-
-  to
-    bottom: 30px
-    opacity: 1
-
-@keyframes fadein
-  from
-    bottom: 0
-    opacity: 0
-
-  to
-    bottom: 30px
-    opacity: 1
-
-@-webkit-keyframes fadeout
-  from
-    bottom: 30px
-    opacity: 1
-
-  to
-    bottom: 0
-    opacity: 0
-
-@keyframes fadeout
-  from
-    bottom: 30px
-    opacity: 1
-
-  to
-    bottom: 0
-    opacity: 0
+.section-fully  
+  .container-fluid
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+.flex-center
+  display: flex
+  align-items: center
+  flex-direction: column
+  justify-content: center

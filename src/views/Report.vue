@@ -1,5 +1,5 @@
 <template lang="pug">    
-      section.section-home
+      section.report-content
           .container-fluid
               start-report
 </template>

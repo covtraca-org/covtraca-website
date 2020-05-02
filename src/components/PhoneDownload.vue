@@ -2,7 +2,8 @@
 	.row
 		.col-lg-6.flex-end
 			.content-hour-people
-				.hour {{ hour }}
+				.hour
+					span {{ hour }}
 					.day {{ day }}
 		.col-lg-6                            
 			.content-title-description
@@ -34,6 +35,7 @@ export default {
   computed: {
     ...mapGetters(["getLang"]),
     hour() {
+      moment.locale(this.getLang);
       return moment().format("HH:mm");
     },
     day() {

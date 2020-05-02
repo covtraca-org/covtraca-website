@@ -32,6 +32,8 @@ export default {
   data() {
     return {
       newCurve: null,
+      cornerCurve: null,
+      langNode: null,
       reports: [],
       worldReport: null,
       GlobalUsers: [],
@@ -279,10 +281,22 @@ export default {
     if (window.innerWidth > 1023) {
       this.getCurve.pause();
       this.newCurve = new TimelineMax();
+      this.cornerCurve = new TimelineMax();
+      this.langNode = new TimelineMax();
       this.newCurve.to(".curve", 1, {
         left: "-70%",
         top: "-50%",
         scale: 3,
+        ease: Linear.ease
+      });
+      this.cornerCurve.to(".corner-right", 1, {
+        right: "-330px",
+        top: "-309px",
+        ease: Linear.ease
+      });
+      this.langNode.to(".navbar-nav", 1, {
+        opacity: 0,
+        display: "none",
         ease: Linear.ease
       });
     }
@@ -291,17 +305,32 @@ export default {
   },
   destroyed() {
     let vm = this;
+    let left = "-7%";
+    let top = "-40%";
     if (window.innerWidth > 1023) {
       setTimeout(() => {
         vm.getCurve.resume();
       }, 1100);
+      if (window.innerWidth >= 1408) {
+        top = "-42%";
+      }
       vm.newCurve.to(".curve", 1, {
-        left: "0%",
-        top: "-5%",
+        left,
+        top,
         scale: 1,
         ease: Linear.ease
       });
     }
+    this.cornerCurve.to(".corner-right", 1, {
+      right: "-210px",
+      top: "-170px",
+      ease: Linear.ease
+    });
+    this.langNode.to(".navbar-nav", 1, {
+      opacity: 1,
+      display: "",
+      ease: Linear.ease
+    });
   }
 };
 </script>

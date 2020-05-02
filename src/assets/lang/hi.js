@@ -1,5 +1,5 @@
 const IN_messages = {
-  nameLang: "भारतीय भाषा",
+  nameLang: "हिंदी",
   subtitleOne: "कृपया कोरोना को नियंत्रण करने में मदद करें",
   subtitleTwo: "प्रतिदिन एक मिनट मानवता के लिए",
   descriptionAppHome:

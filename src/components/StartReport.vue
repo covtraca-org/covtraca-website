@@ -195,13 +195,18 @@ export default {
   },
   destroyed() {
     let vm = this;
+    let left = "-7%";
+    let top = "-40%";
     if (window.innerWidth > 1023) {
       setTimeout(() => {
         vm.getCurve.resume();
       }, 1100);
+      if (window.innerWidth >= 1408) {
+        top = "-42%";
+      }
       vm.newCurve.to(".curve", 1, {
-        left: "0%",
-        top: "-5%",
+        left,
+        top,
         scale: 1,
         ease: Linear.ease
       });

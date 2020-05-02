@@ -2,6 +2,7 @@
   #app
     .base-curve
       .curve-container
+        .corner-right
         .curve
         .bg-cov-intro
     header-cov

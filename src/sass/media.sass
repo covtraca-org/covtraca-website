@@ -1,6 +1,50 @@
 @import 'bulma/sass/utilities/_all';
 
 +desktop
+    .image-description
+        &.is-open
+            margin: 100px 0
+    .hidde-in-desktop
+        display: none
+    .image-description
+        width: 100%
+    .description-section
+        font-size: 1.1em
+        &.with-bg
+            &::before
+                top: 50%
+            &.to-left
+                &::before
+                    border-top: 15px solid transparent
+                    border-right: 25px solid #fff
+                    border-bottom: 15px solid transparent
+                    left: -25px
+            &.to-right
+                &::before
+                    border-top: 15px solid transparent
+                    border-left: 25px solid #fff
+                    border-bottom: 15px solid transparent
+                    right: -25px
+    .title-section
+	    font-size: 2.5em
+    .about	    
+        &::after, &::before
+            background-size: contain
+    .section-fully
+        min-height: 50vh
+        &.first
+            margin-top: 150px
+    .report-content
+        .container-fluid
+            padding: 0% 10%
+    .corner-right
+        background-image: url(/images/burble-right.svg)
+        top: -210px
+        right: -170px
+        width: 440px
+        height: 340px
+        background-size: contain
+        background-repeat: no-repeat
     .description-app
         text-align: right
         b::before
@@ -15,19 +59,33 @@
         height: 100vh
         .curve
             background-size: 70%
-            background-position: 100% center
+            background-position: 100% 100%
             width: 110%
             height: 130%
-        &::after
-            background-image: url(/images/burble-right.svg)
-            top: -210px
-            right: -170px
-            width: 440px
-            height: 480px
-            background-size: contain
+            top: -40%
     .container-fluid, .container-sm, .container-md, .container-lg, .container-xl
         padding: 7% 10%
 +touch
+    .description-section
+        &.with-bg
+            &.to-left, &.to-right
+                &::before
+                    border-left: 15px solid transparent;
+                    border-right: 15px solid transparent;
+                    border-top: 25px solid #fff;                    
+                    left: 50%
+                    bottom: -25px
+                    transform: translateX(-50%)
+    .hidde-in-touch
+        display: none
+    .image-description
+        width: 80%
+    .title-section
+	    font-size: 1.5em
+    .about
+        margin: 40px 0
+        &::after, &::before
+            background-size: cover
     .description-app
         text-align: justify
         color: #fff
@@ -41,10 +99,11 @@
         max-width: 250px !important
     .container-fluid, .container-sm, .container-md, .container-lg, .container-xl
         padding: 7% 20px
-+fullhd
++fullhd    
     .curve-container
         .curve
             background-size: 80%
             background-position: 120% -60%
             width: 110%
             height: 160%
+            top: -42%            
