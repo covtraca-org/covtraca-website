@@ -36,7 +36,7 @@ export default {
       let vm = this;
       vm.loading = !vm.loading;
       axios
-        .post("https://covtraca-backend.test/v1/join_team", vm.fields)
+        .post("https://api.covtraca.org/v1/contact", vm.fields)
         .then(res => {
           console.log(res);
           vm.sended = true;
