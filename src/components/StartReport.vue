@@ -1,30 +1,34 @@
 <template lang="pug">
     .all-questions
-        #report-container(v-if="!sended")
-            .question(v-for="(question, i) in questions", :key="i")            
-                .title-question {{ $t(question.i18n) }}                
-                .type-question(v-if="question.type === 'select'")
-                    .options(:class="question.type")
-                        .option(v-for="(option, j) in question.options", :class="{ 'is-large-text' : option.label.length > 4, 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ $t(option.i18n) }}
-                .type-question(v-if="question.type === 'checkbox'")
-                    .options(:class="question.type")                        
-                        .field(v-for="(option, j) in question.options")
-                            input.is-checkradio(:id="'check-' + question.id + j",
-                                type='checkbox',
-                                :value="option.id",
-                                v-model="question.value")
-                            label(:for="'check-' + question.id + j") {{ $t(option.i18n) }}
-                .type-question(v-if="checkTypeString(question.type)")                    
-                    input(:type="question.type", placeholder="Type here...", @keyup.enter="next", v-model="question.value")
-                .type-question(v-if="question.type === 'textarea'", v-model="question.value")
-                    textarea(placeholder="Type here...")
-        .send(v-else)
-            .title-question {{ $t('thanksMessage') }}
-            .content-button-nav.full
-                button(@click="handleReport") {{ $t('backButton') }}
-        .content-button-nav(v-if="!sended")
-            button(@click="prev", :disabled="step <= 1") {{ $t('prevButton') }}
-            button(@click="next") {{ $t('nextButton') }}
+        .title-question(v-if="loading") {{ $t('loading') }}
+        .content-questions(v-else)
+          #report-container
+              .question(v-for="(question, i) in questions", :key="i")
+                  .title-question {{ $t(question.i18n) }}                
+                  .type-question(v-if="question.type === 'select'")
+                      .options(:class="question.type")
+                          .option(v-for="(option, j) in question.options", :class="{ 'is-large-text' : option.label.length > 4, 'active' : option.value === question.value }", @click="setValue(question, option.value)") {{ $t(option.i18n) }}
+                  .type-question(v-if="question.type === 'checkbox'")
+                      .options(:class="question.type")
+                          .field(v-for="(option, j) in question.options")
+                              input.is-checkradio(:id="'check-' + question.id + j",
+                                  type='checkbox',
+                                  :value="option.id",
+                                  v-model="question.value")
+                              label(:for="'check-' + question.id + j") {{ $t(option.i18n) }}
+                  .type-question(v-if="checkTypeString(question.type)")
+                      input(:type="question.type", placeholder="Type here...", @keyup.enter="next", v-model="question.value")
+                  .type-question(v-if="question.type === 'textarea'", v-model="question.value")
+                      textarea(placeholder="Type here...")
+              .question
+                .title-question(v-if="sending") {{ $t('sending') }}
+                .send(v-else)
+                  .title-question {{ $t('thanksMessage') }}
+                  .content-button-nav.full
+                      button(@click="handleReport") {{ $t('backButton') }}
+          .content-button-nav(v-if="!sended && step < 5")
+              button(@click="prev", :disabled="step <= 1") {{ $t('prevButton') }}
+              button(@click="next") {{ $t('nextButton') }}
 </template>
 
 <script>
@@ -46,7 +50,9 @@ export default {
         answer: [],
         lat: "",
         long: ""
-      }
+      },
+      loading: true,
+      sending: false
     };
   },
   computed: {
@@ -84,11 +90,12 @@ export default {
           let opts = JSON.parse(q.options);
           q.options = opts;
         });
+        vm.loading = false;
       });
     },
     sendReport() {
       let vm = this;
-
+      vm.sending = true;
       _.forEach(vm.questions, q => {
         vm.user_report.answer.push({
           id: q.id,
@@ -101,9 +108,15 @@ export default {
       vm.user_report.answer = ans;
 
       axios
-        .post("https://api.covtraca.org/v1/reports", vm.user_report)
+        .post("https://covtraca-backend.test/v1/reports", vm.user_report)
         .then(() => {
           vm.sended = true;
+        })
+        .then(e => {
+          console.log(e);
+        })
+        .then(() => {
+          vm.sending = false;
         });
     },
     handleReport() {
@@ -121,16 +134,26 @@ export default {
     },
     next() {
       let vm = this;
+      let v = null;
+      if (vm.step != undefined && (vm.step == 3 || vm.step == 4)) {
+        v = _.find(vm.questions, q => {
+          return q.state_name == "isTested";
+        });
+      }
       if (vm.step < vm.stepsLeft) {
+        if (v && !v.value) {
+          vm.step++;
+        }
         vm.step++;
         document.getElementById(
           "report-container"
         ).style.transform = `translateX(calc(-100% * ${vm.step - 1})`;
       } else {
+        vm.step++;
         vm.sendReport();
         document.getElementById(
           "report-container"
-        ).style.transform = `translateX(calc(0%)`;
+        ).style.transform = `translateX(calc(-100% * ${vm.step - 1})`;
       }
     },
     getLocation() {

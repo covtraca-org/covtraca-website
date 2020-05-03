@@ -61,7 +61,16 @@ const EN_messages = {
   anyone to access and use in any way they can, to help reduce and ultimately, stop the spread of
   Coronavirus. Together, we can to minimize the spread, death and disruption – in both our economies
   and daily lives, caused by the COVID-19 pandemic.
-  `
+  `,
+  sending: "Sending...",
+  loading: "Loading...",
+  sendMessage: "Send message",
+  joinTeam: "Join our team",
+  yourName: "Your name",
+  yourEmail: "Your email",
+  yourMessage:
+    "Tell us how you can help us to collaborate in this project, what skills do you have?",
+  messageSended: "Message sent, we will contact you soon!"
 };
 
 export default EN_messages;

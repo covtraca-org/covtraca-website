@@ -5,18 +5,30 @@
                 img.d-inline-block.align-top.icon-cov(src='/images/logo.svg', height='38rem', width='38rem', style='margin-top: unset;', alt='')                
             .col-6.col-md
                 h5 Options
-                ul.list-unstyled.text-small                    
+                ul.list-unstyled.text-small.social
                     li
-                        router-link.item-foot(to="/report") {{ $t('reportButton') }}
+                        router-link.item-foot(to="/report")
+                            .social-icon
+                                i.fas.fa-paper-plane
+                            span {{ $t('reportButton') }}
                     li
-                        router-link.item-foot(to='/map') {{ $t('viewMapButton') }}                    
+                        router-link.item-foot(to='/map')
+                            .social-icon
+                                i.fas.fa-map-marked-alt
+                            span {{ $t('viewMapButton') }}
             .col-6.col-md
                 h5 Download
-                ul.list-unstyled.text-small
+                ul.list-unstyled.text-small.social
                     li
-                        a.item-foot(href='#') Google Play
+                        a.item-foot(href='#')
+                            .social-icon
+                                i.fab.fa-google-play
+                            span Google Play
                     li
-                        a.item-foot(href='#') App Store
+                        a.item-foot(href='#')
+                            .social-icon
+                                i.fab.fa-apple
+                            span App Store
             .col-6.col-md
                 h5 About
                 ul.list-unstyled.text-small.social

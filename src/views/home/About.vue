@@ -1,6 +1,6 @@
 <template lang="pug">
 	.about-section
-		section.section-fully.first.is-blue.about
+		section.section-fully.first.is-blue.container-curve
 			.container-fluid
 				.row
 					.col-lg-6.flex-center
@@ -36,7 +36,6 @@
 .title-section
 	color: #fff
 	font-weight: bold
-	margin-bottom: 20px
 	width: 100%
 	&.center
 		text-align: center
@@ -60,6 +59,7 @@
 	background-position: center
 	margin: 20px 0
 	position: relative
+	width: 100%
 	span
 		position: absolute
 		top: 50%
@@ -75,18 +75,4 @@
 		background-image: url(/images/figure-curves.svg)
 	&.is-colaborate
 		background-image: url(/images/collaborate.svg)
-.about
-	position: relative
-	&::after, &::before
-		content: ""
-		position: absolute
-		left: 0
-		background-image: url(/images/curve-plan.svg)
-		width: 100%
-		height: 40px
-	&::before
-		top: -20px
-		transform: rotate(180deg)
-	&::after
-		bottom: -20px
 </style>

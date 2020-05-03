@@ -43,7 +43,34 @@ const VI_messages = {
   positionUnavailable: "Thông tin vị trí không có sẵn.",
   timeout: "Yêu cầu để có được vị trí người dùng đã hết thời gian.",
   unknownError: "Một lỗi không xác định đã xảy ra.",
-  descriptionApp: "Theo dõi triệu chứng"
+  descriptionApp: "Theo dõi triệu chứng",
+  aboutCovtraca: `Collaboration to slow the spread of COVID-19.<br/><br/>
+  COVTRACA is a privacy-first system for anonymous geolocation based COVID-19 symptom and
+  contact tracing, based on voluntary symptom sharing and or confirmed COVID-19 test results from
+  users.`,
+  ourStoryOne: `
+  COVTRACA is designed by an open community of global developers from the Harvard CS50 online
+  group to combat COVID-19 decimating earth’s citizens. With the intention to Collaborate, Develop and
+  Stop the spread of the novel Coronavirus across the globe, the COVTRACA app is designed for all
+  nations to enable scientists, governments and NGO’s to study the symptoms of the virus and track
+  how it spreads.`,
+  ourStoryTwo: `The COVTRACA team currently consists of a small group of individuals with diverse and relevant skills
+  who feel the need to put those skills to use in service of humanity, our families, friends, loved ones,
+  communities, countries and the global community! We operate a transparency and privacy-first open
+  source project and are committed to working openly and transparently. Our codes are available for
+  anyone to access and use in any way they can, to help reduce and ultimately, stop the spread of
+  Coronavirus. Together, we can to minimize the spread, death and disruption – in both our economies
+  and daily lives, caused by the COVID-19 pandemic.
+  `,
+  sending: "Sending...",
+  loading: "Loading...",
+  sendMessage: "Send message",
+  joinTeam: "Join our team",
+  yourName: "Your name",
+  yourEmail: "Your email",
+  yourMessage:
+    "Tell us how you can help us to collaborate in this project, what skills do you have?",
+  messageSended: "Message sent, we will contact you soon!"
 };
 
 export default VI_messages;

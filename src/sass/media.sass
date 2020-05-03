@@ -1,13 +1,17 @@
 @import 'bulma/sass/utilities/_all';
 
 +desktop
+    .content-button-nav
+        button
+            background: #009cde
+            color: #fff
+            box-shadow: 4px 5px 0px #0a729e
     .image-description
+        height: 300px
         &.is-open
             margin: 100px 0
     .hidde-in-desktop
-        display: none
-    .image-description
-        width: 100%
+        display: none    
     .description-section
         font-size: 1.1em
         &.with-bg
@@ -26,8 +30,9 @@
                     border-bottom: 15px solid transparent
                     right: -25px
     .title-section
-	    font-size: 2.5em
-    .about	    
+        font-size: 2.5em
+        margin-bottom: 20px
+    .container-curve	    
         &::after, &::before
             background-size: contain
     .section-fully
@@ -67,6 +72,14 @@
         padding: 7% 10%
 +touch
     .description-section
+        text-align: justify
+    #report-container
+        .content-button-nav
+            button
+                background: #fff
+                color: #009cde
+                box-shadow: 4px 5px 0px #0a729e
+    .description-section
         &.with-bg
             &.to-left, &.to-right
                 &::before
@@ -79,10 +92,13 @@
     .hidde-in-touch
         display: none
     .image-description
-        width: 80%
+        height: 200px
     .title-section
-	    font-size: 1.5em
-    .about
+        font-size: 1.5em
+        text-align: center
+        margin-top: 20px
+        margin-bottom: 60px
+    .container-curve
         margin: 40px 0
         &::after, &::before
             background-size: cover
