@@ -51,7 +51,15 @@
                         a.item-foot(href="https://instagram.com/covtraca", target="_blank")
                             .social-icon
                                 i.fab.fa-instagram
-                            span Instragram        
+                            span Instragram
+            .col-6.col-md
+                h5 Legal
+                ul.list-unstyled.text-small.social
+                    li
+                        a.item-foot(href="/docs/PrivacyNotice.pdf", target="_blank")
+                            .social-icon
+                                i.fas.fa-balance-scale-right
+                            span Privacy
 </template>
 <script>
 import { mapGetters } from "vuex";
