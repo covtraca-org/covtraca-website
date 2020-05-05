@@ -1,15 +1,40 @@
 <template lang="pug">
     .map-cov      
-        #map
+        gmap-map(:center="center", :zoom="5", :options="options")
+          gmap-marker(:key="'cov-' + i",
+            v-for="(m, i) in CovTracaUsers",
+            :position="m.position",
+            :icon="m.icon")
+          gmap-marker(:key="'global-' + j",
+            v-for="(m, j) in GlobalUsers",
+            :position="m.position",
+            :icon="m.icon",
+            @click="toggleInfoWindow(m, j)")
+          gmap-info-window(
+            :options="infoOptions",
+            :position="infoWindowPos",
+            :opened="infoWinOpen",
+            @closeclick="infoWinOpen=false")
+            div(v-html="infoContent")
 </template>
 <script>
+import Vue from "vue";
 import axios from "axios";
 import _ from "lodash";
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import { TimelineMax, Linear } from "gsap";
 import { mapGetters } from "vuex";
 import CountryCodes from "@/assets/country_codes.json";
+
+import * as VueGoogleMaps from "vue2-google-maps";
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyBnC1bxO8z4HmQy346IgeKfgweL2tIokFc"
+    //libraries: "places" // necessary for places input
+  }
+});
+
+const iconBase = "/images/";
 
 export default {
   props: {
@@ -38,10 +63,236 @@ export default {
       worldReport: null,
       GlobalUsers: [],
       CovTracaUsers: [],
-      map: null
+      center: { lat: 45.508, lng: -73.587 },
+      icons: {
+        global: {
+          icon: iconBase + "dot_red.svg"
+        },
+        covUser: {
+          icon: iconBase + "dot_blue.svg"
+        }
+      },
+      infoContent: "",
+      infoWindowPos: {
+        lat: 0,
+        lng: 0
+      },
+      infoWinOpen: false,
+      currentMidx: null,
+      infoOptions: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
+      },
+      options: {
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        styles: [
+          {
+            elementType: "geometry",
+            stylers: [
+              {
+                color: "#212121"
+              }
+            ]
+          },
+          {
+            elementType: "labels.icon",
+            stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#757575"
+              }
+            ]
+          },
+          {
+            elementType: "labels.text.stroke",
+            stylers: [
+              {
+                color: "#212121"
+              }
+            ]
+          },
+          {
+            featureType: "administrative",
+            elementType: "geometry",
+            stylers: [
+              {
+                color: "#757575"
+              }
+            ]
+          },
+          {
+            featureType: "administrative.country",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#9e9e9e"
+              }
+            ]
+          },
+          {
+            featureType: "administrative.land_parcel",
+            stylers: [
+              {
+                visibility: "off"
+              }
+            ]
+          },
+          {
+            featureType: "administrative.locality",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#bdbdbd"
+              }
+            ]
+          },
+          {
+            featureType: "poi",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#757575"
+              }
+            ]
+          },
+          {
+            featureType: "poi.park",
+            elementType: "geometry",
+            stylers: [
+              {
+                color: "#181818"
+              }
+            ]
+          },
+          {
+            featureType: "poi.park",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#616161"
+              }
+            ]
+          },
+          {
+            featureType: "poi.park",
+            elementType: "labels.text.stroke",
+            stylers: [
+              {
+                color: "#1b1b1b"
+              }
+            ]
+          },
+          {
+            featureType: "road",
+            elementType: "geometry.fill",
+            stylers: [
+              {
+                color: "#2c2c2c"
+              }
+            ]
+          },
+          {
+            featureType: "road",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#8a8a8a"
+              }
+            ]
+          },
+          {
+            featureType: "road.arterial",
+            elementType: "geometry",
+            stylers: [
+              {
+                color: "#373737"
+              }
+            ]
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry",
+            stylers: [
+              {
+                color: "#3c3c3c"
+              }
+            ]
+          },
+          {
+            featureType: "road.highway.controlled_access",
+            elementType: "geometry",
+            stylers: [
+              {
+                color: "#4e4e4e"
+              }
+            ]
+          },
+          {
+            featureType: "road.local",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#616161"
+              }
+            ]
+          },
+          {
+            featureType: "transit",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#757575"
+              }
+            ]
+          },
+          {
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [
+              {
+                color: "#000000"
+              }
+            ]
+          },
+          {
+            featureType: "water",
+            elementType: "labels.text.fill",
+            stylers: [
+              {
+                color: "#3d3d3d"
+              }
+            ]
+          }
+        ]
+      }
     };
   },
   methods: {
+    toggleInfoWindow: function(marker, idx) {
+      this.infoWindowPos = marker.position;
+      this.infoContent = marker.description;
+
+      //check if its the same marker that was selected if yes toggle
+      if (this.currentMidx == idx) {
+        this.infoWinOpen = !this.infoWinOpen;
+      }
+      //if different marker set infowindow to open and reset current marker index
+      else {
+        this.infoWinOpen = true;
+        this.currentMidx = idx;
+      }
+    },
     getReports() {
       let vm = this;
       axios.get("https://api.covtraca.org/v1/reports").then(res => {
@@ -49,11 +300,9 @@ export default {
         _.forEach(vm.reports, r => {
           if (r.lat != null && r.long != null) {
             vm.CovTracaUsers.push({
-              type: "Feature",
-              geometry: {
-                type: "Point",
-                coordinates: [r.long, r.lat]
-              }
+              icon: vm.icons["covUser"].icon,
+              position: { lat: r.lat, lng: r.long },
+              title: "Hello World!"
             });
           }
         });
@@ -70,214 +319,102 @@ export default {
 
           if (search_country && r.TotalConfirmed > 0) {
             vm.GlobalUsers.push({
-              type: "Feature",
-              properties: {
-                description: `
-                  <div class="report-country">
-                    <h1>${r.Country}</h1>
-                    <div class="progress-report">
-                      <div class="progess-slice red" style="width:${100 *
-                        (r.TotalConfirmed /
-                          (r.TotalConfirmed +
-                            r.TotalRecovered +
-                            r.TotalDeaths / 100))}%"></div>
-                      <div class="progess-slice green" style="width:${100 *
-                        (r.TotalRecovered /
-                          (r.TotalConfirmed +
-                            r.TotalRecovered +
-                            r.TotalDeaths / 100))}%"></div>
-                      <div class="progess-slice black not-margin" style="width:${100 *
-                        (r.TotalDeaths /
-                          (r.TotalConfirmed +
-                            r.TotalRecovered +
-                            r.TotalDeaths / 100))}%"></div>
+              icon: vm.icons["global"].icon,
+              position: {
+                lat: search_country.latlng[0],
+                lng: search_country.latlng[1]
+              },
+              description: `
+                <div class="report-country">
+                  <h1>${r.Country}</h1>
+                  <div class="progress-report">
+                    <div class="progess-slice red" style="width:${100 *
+                      (r.TotalConfirmed /
+                        (r.TotalConfirmed +
+                          r.TotalRecovered +
+                          r.TotalDeaths / 100))}%"></div>
+                    <div class="progess-slice green" style="width:${100 *
+                      (r.TotalRecovered /
+                        (r.TotalConfirmed +
+                          r.TotalRecovered +
+                          r.TotalDeaths / 100))}%"></div>
+                    <div class="progess-slice black not-margin" style="width:${100 *
+                      (r.TotalDeaths /
+                        (r.TotalConfirmed +
+                          r.TotalRecovered +
+                          r.TotalDeaths / 100))}%"></div>
+                  </div>
+                  <div class="content-info-country">
+                    <div class="content-title-country red">
+                      <span class="circle-status"></span>
+                      <div class="title-report">${
+                        vm.activeCaseText
+                      } </div class="title-report">
+                      <div class="count-covid">                          
+                        <span class="total-report">${r.TotalConfirmed}</span>
+                        <span class="new-report">+${r.NewConfirmed}</span>
+                      </div>
                     </div>
-                    <div class="content-info-country">
-                      <div class="content-title-country red">
-                        <span class="circle-status"></span>
-                        <div class="title-report">${
-                          vm.activeCaseText
-                        } </div class="title-report">
-                        <div class="count-covid">                          
-                          <span class="total-report">${r.TotalConfirmed}</span>
-                          <span class="new-report">+${r.NewConfirmed}</span>
-                        </div>
+                    <div class="content-title-country green">
+                      <span class="circle-status"></span>
+                      <div class="title-report">${
+                        vm.recoveredCaseText
+                      } </div class="title-report">
+                      <div class="count-covid">
+                        <span class="total-report">${r.TotalRecovered}</span>
+                        <span class="new-report">+${r.NewRecovered}</span>
                       </div>
-                      <div class="content-title-country green">
-                        <span class="circle-status"></span>
-                        <div class="title-report">${
-                          vm.recoveredCaseText
-                        } </div class="title-report">
-                        <div class="count-covid">
-                          <span class="total-report">${r.TotalRecovered}</span>
-                          <span class="new-report">+${r.NewRecovered}</span>
-                        </div>
-                      </div>
-                      <div class="content-title-country black">
-                        <span class="circle-status"></span>
-                        <div class="title-report">${
-                          vm.deadlyCaseText
-                        } </div class="title-report">
-                        <div class="count-covid">
-                          <span class="total-report">${r.TotalDeaths}</span>
-                          <span class="new-report">+${r.NewDeaths}</span>
-                        </div>
+                    </div>
+                    <div class="content-title-country black">
+                      <span class="circle-status"></span>
+                      <div class="title-report">${
+                        vm.deadlyCaseText
+                      } </div class="title-report">
+                      <div class="count-covid">
+                        <span class="total-report">${r.TotalDeaths}</span>
+                        <span class="new-report">+${r.NewDeaths}</span>
                       </div>
                     </div>
                   </div>
-                  `
-              },
-              geometry: {
-                type: "Point",
-                coordinates: [
-                  search_country.latlng[1],
-                  search_country.latlng[0]
-                ]
-              }
+                </div>
+                `
             });
           }
         });
-        vm.renderMap();
+      });
+    },
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
       });
     },
     renderMap() {
-      let vm = this;
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiY292dHJhY2EiLCJhIjoiY2s5Y3liNXVmMDkyODNocDVzdGxvaXZqeCJ9.I-oXd16J5u_HVtr3gL8QPA";
-      vm.map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/mapbox/dark-v10",
-        zoom: 1.5
-      });
+      /*
+      let vm = this;  
+      vm.map.on("click", "infecteds", function(e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var description = e.features[0].properties.description;
 
-      var size = 200;
-
-      var pulsingDot = {
-        width: size,
-        height: size,
-        data: new Uint8Array(size * size * 4),
-        onAdd: function() {
-          var canvas = document.createElement("canvas");
-          canvas.width = this.width;
-          canvas.height = this.height;
-          this.context = canvas.getContext("2d");
-        },
-
-        // called once before every frame where the icon will be used
-        render: function() {
-          var radius = (size / 2) * 0.3;
-          var context = this.context;
-
-          // draw inner circle
-          context.beginPath();
-          context.arc(this.width / 2, this.height / 2, radius, 0, Math.PI * 2);
-          //context.fillStyle = 'rgba(255, 100, 100, 1)';
-          context.fillStyle = "rgba(0, 156, 222, 1)";
-          context.strokeStyle = "white";
-          context.fill();
-          context.stroke();
-
-          // update this image's data with data from the canvas
-          this.data = context.getImageData(0, 0, this.width, this.height).data;
-          return true;
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
-      };
 
-      var infectedDot = {
-        width: size,
-        height: size,
-        data: new Uint8Array(size * size * 4),
-        onAdd: function() {
-          var canvas = document.createElement("canvas");
-          canvas.width = this.width;
-          canvas.height = this.height;
-          this.context = canvas.getContext("2d");
-        },
-
-        // called once before every frame where the icon will be used
-        render: function() {
-          var radius = (size / 2) * 0.3;
-          var context = this.context;
-
-          // draw inner circle
-          context.beginPath();
-          context.arc(this.width / 2, this.height / 2, radius, 0, Math.PI * 2);
-          context.fillStyle = "rgba(255, 100, 100, 1)";
-          context.strokeStyle = "rgba(255, 100, 100, 1)";
-          context.fill();
-          context.stroke();
-
-          // update this image's data with data from the canvas
-          this.data = context.getImageData(0, 0, this.width, this.height).data;
-          return true;
-        }
-      };
-
-      vm.map.on("load", function() {
-        vm.map.addImage("pulsing-dot", pulsingDot, { pixelRatio: 8 });
-        vm.map.addImage("infected-dot", infectedDot, { pixelRatio: 8 });
-
-        vm.map.addSource("infecteds", {
-          type: "geojson",
-          data: {
-            type: "FeatureCollection",
-            features: vm.GlobalUsers
-          }
-        });
-
-        vm.map.addLayer({
-          id: "infecteds",
-          type: "symbol",
-          source: "infecteds",
-          layout: {
-            "icon-image": "infected-dot"
-          }
-        });
-        vm.map.on("click", "infecteds", function(e) {
-          var coordinates = e.features[0].geometry.coordinates.slice();
-          var description = e.features[0].properties.description;
-
-          // Ensure that if the map is zoomed out such that multiple
-          // copies of the feature are visible, the popup appears
-          // over the copy being pointed to.
-          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-          }
-
-          new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(vm.map);
-        });
-        vm.map.on("mouseenter", "infecteds", function() {
-          vm.map.getCanvas().style.cursor = "pointer";
-        });
-
-        // Change it back to a pointer when it leaves.
-        vm.map.on("mouseleave", "infecteds", function() {
-          vm.map.getCanvas().style.cursor = "";
-        });
-
-        vm.map.addSource("points", {
-          type: "geojson",
-          data: {
-            type: "FeatureCollection",
-            features: vm.CovTracaUsers
-          }
-        });
-
-        vm.map.addLayer({
-          id: "points",
-          type: "symbol",
-          source: "points",
-          layout: {
-            "icon-image": "pulsing-dot"
-          }
-        });
-      });
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(description)
+          .addTo(vm.map);
+      });       
+      */
     }
   },
   mounted() {
+    this.geolocate();
     if (window.innerWidth > 1023) {
       this.getCurve.pause();
       this.newCurve = new TimelineMax();
@@ -414,4 +551,6 @@ export default {
     position: absolute
     top: 0
     left: 0
+.vue-map-container
+  height: 100%
 </style>
