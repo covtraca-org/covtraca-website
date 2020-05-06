@@ -111,7 +111,7 @@ export default {
       vm.user_report.answer = ans;
 
       axios
-        .post("https://covtraca-backend.test/v1/reports", vm.user_report)
+        .post("https://api.covtraca.org/v1/reports", vm.user_report)
         .then(() => {
           vm.sended = true;
         })
