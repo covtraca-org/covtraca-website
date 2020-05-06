@@ -47,7 +47,7 @@ export default {
       step: 1,
       sended: false,
       user_report: {
-        answer: [],
+        answer: {},
         lat: "",
         long: ""
       },
@@ -97,10 +97,13 @@ export default {
       let vm = this;
       vm.sending = true;
       _.forEach(vm.questions, q => {
-        vm.user_report.answer.push({
-          id: q.id,
-          value: q.value
-        });
+        let a = vm.user_report.answer[q.id];
+        if (q.id == 4 && q.value == "") {
+          a = false;
+        } else {
+          a = q.value;
+        }
+        vm.user_report.answer[q.id] = a;
       });
 
       let ans = JSON.stringify(vm.user_report.answer);
@@ -108,11 +111,11 @@ export default {
       vm.user_report.answer = ans;
 
       axios
-        .post("https://api.covtraca.org/v1/reports", vm.user_report)
+        .post("https://covtraca-backend.test/v1/reports", vm.user_report)
         .then(() => {
           vm.sended = true;
         })
-        .then(e => {
+        .catch(e => {
           console.log(e);
         })
         .then(() => {
@@ -143,6 +146,7 @@ export default {
       if (vm.step < vm.stepsLeft) {
         if (v && !v.value) {
           vm.step++;
+          vm.sendReport();
         }
         vm.step++;
         document.getElementById(
