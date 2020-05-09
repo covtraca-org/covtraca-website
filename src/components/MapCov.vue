@@ -4,7 +4,8 @@
           gmap-marker(:key="'cov-' + i",
             v-for="(m, i) in CovTracaUsers",
             :position="m.position",
-            :icon="m.icon")
+            :icon="m.icon",
+            @click="toggleInfoWindow(m, i)")
           gmap-marker(:key="'global-' + j",
             v-for="(m, j) in GlobalUsers",
             :position="m.position",
@@ -38,6 +39,10 @@ const iconBase = "/images/";
 
 export default {
   props: {
+    covtracaReportText: {
+      type: String,
+      required: true
+    },
     activeCaseText: {
       type: String,
       required: true
@@ -295,14 +300,26 @@ export default {
     },
     getReports() {
       let vm = this;
-      axios.get("https://api.covtraca.org/v1/reports").then(res => {
+      axios.get("https://api.covtraca.org/v1/countReports").then(res => {
         vm.reports = res.data.data;
-        _.forEach(vm.reports, r => {
-          if (r.lat != null && r.long != null) {
+        _.forEach(vm.reports, (r, k) => {
+          let search_country = _.find(CountryCodes, s => {
+            return s.country_code == k;
+          });
+          if (search_country) {
             vm.CovTracaUsers.push({
               icon: vm.icons["covUser"].icon,
-              position: { lat: r.lat, lng: r.long },
-              title: "Hello World!"
+              position: {
+                lat: search_country.latlng[0] + 0.3,
+                lng: search_country.latlng[1] - 0.3
+              },
+              description: `
+                <div class="report-country">
+                  <h1 class="title-cov-country">${search_country.name}</h1>
+                  <div class="count-cov-covid">${r}</div>
+                  <div class="title-cov-report">${vm.covtracaReportText} </div class="title-report">                  
+                </div>
+              `
             });
           }
         });
@@ -390,27 +407,6 @@ export default {
           lng: position.coords.longitude
         };
       });
-    },
-    renderMap() {
-      /*
-      let vm = this;  
-      vm.map.on("click", "infecteds", function(e) {
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.description;
-
-        // Ensure that if the map is zoomed out such that multiple
-        // copies of the feature are visible, the popup appears
-        // over the copy being pointed to.
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
-
-        new mapboxgl.Popup()
-          .setLngLat(coordinates)
-          .setHTML(description)
-          .addTo(vm.map);
-      });       
-      */
     }
   },
   mounted() {
@@ -472,6 +468,18 @@ export default {
 };
 </script>
 <style lang="sass">
+.title-cov-country
+  color: #009cde
+.title-cov-report
+  font-size: 1.2em
+  font-weight: bold
+  color: #50575a
+.count-cov-covid
+  text-align: center
+  font-size: 3em
+  font-weight: bold
+  margin-bottom: 15px
+  color: #009cde
 .progress-report
   display: flex
   margin-bottom: 10px

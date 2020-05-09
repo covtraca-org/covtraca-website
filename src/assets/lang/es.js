@@ -72,7 +72,8 @@ const ES_messages = {
   yourEmail: "Your email",
   yourMessage:
     "Tell us how you can help us to collaborate in this project, what skills do you have?",
-  messageSended: "Message sent, we will contact you soon!"
+  messageSended: "Message sent, we will contact you soon!",
+  covtracaUserReport: "Casos reportados desde la aplicacion desde este país"
 };
 
 export default ES_messages;

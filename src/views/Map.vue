@@ -1,7 +1,8 @@
 <template lang="pug">    
       section.section-home
           .container-fluid
-              map-cov(:active-case-text="$t('activeCases')",
+              map-cov(:covtraca-report-text="$t('covtracaUserReport')",
+                :active-case-text="$t('activeCases')",
                 :recovered-case-text="$t('recoveredCases')",
                 :deadly-case-text="$t('deadlyCases')")
 </template>

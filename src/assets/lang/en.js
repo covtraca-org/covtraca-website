@@ -70,7 +70,8 @@ const EN_messages = {
   yourEmail: "Your email",
   yourMessage:
     "Tell us how you can help us to collaborate in this project, what skills do you have?",
-  messageSended: "Message sent, we will contact you soon!"
+  messageSended: "Message sent, we will contact you soon!",
+  covtracaUserReport: "Cases reported from the application from this country"
 };
 
 export default EN_messages;
