@@ -71,7 +71,20 @@ const EN_messages = {
   yourMessage:
     "Tell us how you can help us to collaborate in this project, what skills do you have?",
   messageSended: "Message sent, we will contact you soon!",
-  covtracaUserReport: "Cases reported from the application from this country"
+  covtracaUserReport: "Cases reported from the application from this country",
+  privacy: "Privacy",
+  socialGI: "GitHub",
+  socialFB: "Facebook",
+  socialTW: "Twitter",
+  socialIN: "Instagram",
+  optionsText: "Options",
+  downloadText: "Download",
+  followText: "Follow Us",
+  legalText: "Legal",
+  aboutTitle: "About CovTraca.org",
+  ourStoryTitle: "Our Story",
+  openComunity: "Open Comunity",
+  openSource: "Open Source"
 };
 
 export default EN_messages;

@@ -302,9 +302,9 @@ export default {
       let vm = this;
       axios.get("https://api.covtraca.org/v1/countReports").then(res => {
         vm.reports = res.data.data;
-        _.forEach(vm.reports, (r, k) => {
+        _.forEach(vm.reports, r => {
           let search_country = _.find(CountryCodes, s => {
-            return s.country_code == k;
+            return s.country_code == r.country_code;
           });
           if (search_country) {
             vm.CovTracaUsers.push({
@@ -315,8 +315,8 @@ export default {
               },
               description: `
                 <div class="report-country">
-                  <h1 class="title-cov-country">${search_country.name}</h1>
-                  <div class="count-cov-covid">${r}</div>
+                  <h1 class="title-cov-country">${r.country_name}</h1>
+                  <div class="count-cov-covid">${r.count}</div>
                   <div class="title-cov-report">${vm.covtracaReportText} </div class="title-report">                  
                 </div>
               `

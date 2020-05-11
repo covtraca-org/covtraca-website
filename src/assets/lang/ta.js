@@ -45,33 +45,34 @@ const TL_messages = {
   timeout: "பயனர் இருப்பிடத்தைப் பெறுவதற்கான கோரிக்கை நேரம் முடிந்தது.",
   unknownError: "அறியப்படாத பிழை ஏற்பட்டது",
   descriptionApp: "அறிகுறி டிராக்கர்",
-  aboutCovtraca: `Collaboration to slow the spread of COVID-19.<br/><br/>
-  COVTRACA is a privacy-first system for anonymous geolocation based COVID-19 symptom and
-  contact tracing, based on voluntary symptom sharing and or confirmed COVID-19 test results from
-  users.`,
-  ourStoryOne: `
-  COVTRACA is designed by an open community of global developers from the Harvard CS50 online
-  group to combat COVID-19 decimating earth’s citizens. With the intention to Collaborate, Develop and
-  Stop the spread of the novel Coronavirus across the globe, the COVTRACA app is designed for all
-  nations to enable scientists, governments and NGO’s to study the symptoms of the virus and track
-  how it spreads.`,
-  ourStoryTwo: `The COVTRACA team currently consists of a small group of individuals with diverse and relevant skills
-  who feel the need to put those skills to use in service of humanity, our families, friends, loved ones,
-  communities, countries and the global community! We operate a transparency and privacy-first open
-  source project and are committed to working openly and transparently. Our codes are available for
-  anyone to access and use in any way they can, to help reduce and ultimately, stop the spread of
-  Coronavirus. Together, we can to minimize the spread, death and disruption – in both our economies
-  and daily lives, caused by the COVID-19 pandemic.
-  `,
-  sending: "Sending...",
-  loading: "Loading...",
-  sendMessage: "Send message",
-  joinTeam: "Join our team",
-  yourName: "Your name",
-  yourEmail: "Your email",
+  aboutCovtraca: `COVID-19 இன் பரவலை மெதுவாக்குவதற்கான ஒத்துழைப்பு. <br/> <br/>
+  COVTRACA என்பது அநாமதேய புவிஇருப்பிட அடிப்படையிலான COVID-19 அறிகுறி மற்றும் தொடர்புத் தடமறிதலுக்கான தனியுரிமை-முதல் அமைப்பாகும், இது தன்னார்வ அறிகுறி பகிர்வு மற்றும் பயனர்களிடமிருந்து உறுதிப்படுத்தப்பட்ட COVID-19 சோதனை முடிவுகளை அடிப்படையாகக் கொண்டது.`,
+  ourStoryOne: `COVTRACA என்பது ஹார்வர்ட் CS50 ஆன்லைன் குழுவின் உலகளாவிய டெவலப்பர்களின் திறந்த சமூகத்தால் வடிவமைக்கப்பட்டுள்ளது, இது COVID-19 பூமியின் குடிமக்களை எதிர்த்துப் போராடுகிறது. உலகெங்கிலும் கொரோனா வைரஸ் நாவலின் ஒத்துழைப்பு, மேம்பாடு மற்றும் நிறுத்தும் நோக்கத்துடன், விஞ்ஞானிகள், அரசாங்கங்கள் மற்றும் தன்னார்வ தொண்டு நிறுவனங்கள் வைரஸின் அறிகுறிகளைப் படிப்பதற்கும் அது எவ்வாறு பரவுகிறது என்பதைக் கண்காணிப்பதற்கும் அனைத்து நாடுகளுக்கும் கோவ்ட்ராகா பயன்பாடு வடிவமைக்கப்பட்டுள்ளது.`,
+  ourStoryTwo: `COVTRACA குழு தற்போது பல்வேறு மற்றும் பொருத்தமான திறன்களைக் கொண்ட ஒரு சிறிய குழுவைக் கொண்டுள்ளது, அவர்கள் அந்த திறன்களை மனிதகுலத்தின் சேவையில் பயன்படுத்த வேண்டிய அவசியத்தை உணர்கிறார்கள், எங்கள் குடும்பங்கள், நண்பர்கள், அன்புக்குரியவர்கள், சமூகங்கள், நாடுகள் மற்றும் உலகளாவிய சமூகம்! நாங்கள் ஒரு வெளிப்படைத்தன்மை மற்றும் தனியுரிமை முதல் திறந்த மூல திட்டத்தை இயக்குகிறோம், வெளிப்படையாகவும் வெளிப்படையாகவும் செயல்பட உறுதிபூண்டுள்ளோம். எங்கள் குறியீடுகள் எவருக்கும் எந்த வகையிலும் அணுகவும் பயன்படுத்தவும் கிடைக்கின்றன, குறைக்க உதவுகின்றன மற்றும் இறுதியில், கொரோனா வைரஸின் பரவலை நிறுத்தலாம். COVID-19 தொற்றுநோயால் ஏற்படும் நமது பொருளாதாரங்கள் மற்றும் அன்றாட வாழ்க்கையில் - பரவல், இறப்பு மற்றும் இடையூறு ஆகியவற்றைக் குறைக்க நாம் ஒன்றாக முடியும்.`,
+  sending: "அனுப்புகிறது...",
+  loading: "ஏற்றுகிறது...",
+  sendMessage: "செய்தி அனுப்ப",
+  joinTeam: "எங்கள் அணியில் சேரவும்",
+  yourName: "உங்கள் பெயர்",
+  yourEmail: "உங்கள் மின்னஞ்சல்",
   yourMessage:
-    "Tell us how you can help us to collaborate in this project, what skills do you have?",
-  messageSended: "Message sent, we will contact you soon!"
+    "இந்த திட்டத்தில் ஒத்துழைக்க நீங்கள் எவ்வாறு எங்களுக்கு உதவ முடியும் என்று எங்களிடம் கூறுங்கள், உங்களிடம் என்ன திறன்கள் உள்ளன?",
+  messageSended: "செய்தி அனுப்பப்பட்டது, விரைவில் உங்களைத் தொடர்புகொள்வோம்!",
+  covtracaUserReport:
+    "இந்த நாட்டிலிருந்து விண்ணப்பத்திலிருந்து புகாரளிக்கப்பட்ட வழக்குகள்",
+  privacy: "தனியுரிமை",
+  socialGI: "கிட்ஹப்",
+  socialFB: "முகநூல்",
+  socialTW: "ட்விட்டர்",
+  socialIN: "Instagram",
+  optionsText: "விருப்பங்கள்",
+  downloadText: "பதிவிறக்க Tamil",
+  followText: "எங்களை பின்தொடரவும்",
+  legalText: "சட்ட",
+  aboutTitle: "CovTraca.org பற்றி",
+  ourStoryTitle: "நமது கதை",
+  openComunity: "திறந்த சமூகம்",
+  openSource: "திறந்த மூல"
 };
 
 export default TL_messages;

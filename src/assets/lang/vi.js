@@ -44,33 +44,34 @@ const VI_messages = {
   timeout: "Yêu cầu để có được vị trí người dùng đã hết thời gian.",
   unknownError: "Một lỗi không xác định đã xảy ra.",
   descriptionApp: "Theo dõi triệu chứng",
-  aboutCovtraca: `Collaboration to slow the spread of COVID-19.<br/><br/>
-  COVTRACA is a privacy-first system for anonymous geolocation based COVID-19 symptom and
-  contact tracing, based on voluntary symptom sharing and or confirmed COVID-19 test results from
-  users.`,
-  ourStoryOne: `
-  COVTRACA is designed by an open community of global developers from the Harvard CS50 online
-  group to combat COVID-19 decimating earth’s citizens. With the intention to Collaborate, Develop and
-  Stop the spread of the novel Coronavirus across the globe, the COVTRACA app is designed for all
-  nations to enable scientists, governments and NGO’s to study the symptoms of the virus and track
-  how it spreads.`,
-  ourStoryTwo: `The COVTRACA team currently consists of a small group of individuals with diverse and relevant skills
-  who feel the need to put those skills to use in service of humanity, our families, friends, loved ones,
-  communities, countries and the global community! We operate a transparency and privacy-first open
-  source project and are committed to working openly and transparently. Our codes are available for
-  anyone to access and use in any way they can, to help reduce and ultimately, stop the spread of
-  Coronavirus. Together, we can to minimize the spread, death and disruption – in both our economies
-  and daily lives, caused by the COVID-19 pandemic.
-  `,
-  sending: "Sending...",
-  loading: "Loading...",
-  sendMessage: "Send message",
-  joinTeam: "Join our team",
-  yourName: "Your name",
-  yourEmail: "Your email",
+  aboutCovtraca: `Phối hợp để làm chậm sự lây lan của COVID-19. <br/> <br/>
+  COVTRACA là một hệ thống đầu tiên về quyền riêng tư đối với triệu chứng COVID-19 dựa trên định vị địa lý ẩn danh và theo dõi liên lạc, dựa trên chia sẻ triệu chứng tự nguyện và kết quả xét nghiệm COVID-19 được xác nhận từ người dùng.`,
+  ourStoryOne: `COVTRACA được thiết kế bởi một cộng đồng mở của các nhà phát triển toàn cầu từ nhóm trực tuyến Harvard CS50 để chống lại các công dân trái đất đang tàn phá COVID-19. Với ý định hợp tác, phát triển và ngăn chặn sự lây lan của tiểu thuyết coronavirus trên toàn cầu, ứng dụng COVTRACA được thiết kế cho tất cả các quốc gia để cho phép các nhà khoa học, chính phủ và tổ chức phi chính phủ nghiên cứu các triệu chứng của vi-rút và theo dõi sự lây lan của vi-rút.`,
+  ourStoryTwo: `Nhóm COVTRACA hiện bao gồm một nhóm nhỏ các cá nhân có kỹ năng đa dạng và phù hợp, họ cảm thấy cần phải sử dụng các kỹ năng đó để phục vụ nhân loại, gia đình, bạn bè, người thân, cộng đồng, quốc gia và cộng đồng toàn cầu! Chúng tôi vận hành một dự án nguồn mở đầu tiên về tính minh bạch và riêng tư và cam kết làm việc công khai và minh bạch. Mã của chúng tôi có sẵn cho bất kỳ ai truy cập và sử dụng theo bất kỳ cách nào họ có thể, để giúp giảm và cuối cùng, ngăn chặn sự lây lan của coronavirus. Cùng nhau, chúng ta có thể giảm thiểu sự lây lan, cái chết và sự gián đoạn - trong cả nền kinh tế và cuộc sống hàng ngày của chúng ta, gây ra bởi đại dịch COVID-19.`,
+  sending: "Gửi...",
+  loading: "Đang tải...",
+  sendMessage: "Gửi tin nhắn",
+  joinTeam: "Tham gia vào nhóm chúng tôi",
+  yourName: "Tên của bạn",
+  yourEmail: "Email của bạn",
   yourMessage:
-    "Tell us how you can help us to collaborate in this project, what skills do you have?",
-  messageSended: "Message sent, we will contact you soon!"
+    "Hãy cho chúng tôi biết làm thế nào bạn có thể giúp chúng tôi cộng tác trong dự án này, bạn có những kỹ năng gì?",
+  messageSended: "Tin nhắn đã gửi, chúng tôi sẽ liên lạc với bạn sớm!",
+  covtracaUserReport:
+    "Các trường hợp được báo cáo từ các ứng dụng từ đất nước này",
+  privacy: "Riêng tư",
+  socialGI: "GitHub",
+  socialFB: "Facebook",
+  socialTW: "Twitter",
+  socialIN: "Instagram",
+  optionsText: "Tùy chọn",
+  downloadText: "Tải xuống",
+  followText: "Theo chúng tôi",
+  legalText: "Hợp pháp",
+  aboutTitle: "Giới thiệu về CovTraca.org",
+  ourStoryTitle: "Câu chuyện của chúng tôi",
+  openComunity: "Mở cộng đồng",
+  openSource: "Mã nguồn mở"
 };
 
 export default VI_messages;

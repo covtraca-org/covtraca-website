@@ -43,33 +43,33 @@ const RU_messages = {
   timeout: "Просьба получить информацию про место расположение не получилась",
   unknownError: "Неизвестная ошибка",
   descriptionApp: "Трекер симптомов",
-  aboutCovtraca: `Collaboration to slow the spread of COVID-19.<br/><br/>
-  COVTRACA is a privacy-first system for anonymous geolocation based COVID-19 symptom and
-  contact tracing, based on voluntary symptom sharing and or confirmed COVID-19 test results from
-  users.`,
-  ourStoryOne: `
-  COVTRACA is designed by an open community of global developers from the Harvard CS50 online
-  group to combat COVID-19 decimating earth’s citizens. With the intention to Collaborate, Develop and
-  Stop the spread of the novel Coronavirus across the globe, the COVTRACA app is designed for all
-  nations to enable scientists, governments and NGO’s to study the symptoms of the virus and track
-  how it spreads.`,
-  ourStoryTwo: `The COVTRACA team currently consists of a small group of individuals with diverse and relevant skills
-  who feel the need to put those skills to use in service of humanity, our families, friends, loved ones,
-  communities, countries and the global community! We operate a transparency and privacy-first open
-  source project and are committed to working openly and transparently. Our codes are available for
-  anyone to access and use in any way they can, to help reduce and ultimately, stop the spread of
-  Coronavirus. Together, we can to minimize the spread, death and disruption – in both our economies
-  and daily lives, caused by the COVID-19 pandemic.
-  `,
-  sending: "Sending...",
-  loading: "Loading...",
-  sendMessage: "Send message",
-  joinTeam: "Join our team",
-  yourName: "Your name",
-  yourEmail: "Your email",
+  aboutCovtraca: `Сотрудничество для замедления распространения COVID-19. <br/> <br/>
+  COVTRACA - это первая в мире система конфиденциальности для отслеживания симптомов и отслеживания контактов COVID-19 на основе геолокации, основанная на добровольном обмене симптомами и / или подтвержденных результатах тестирования COVID-19 от пользователей.`,
+  ourStoryOne: `COVTRACA разработана открытым сообществом глобальных разработчиков из онлайновой группы Harvard CS50 для борьбы с COVID-19, уничтожающим жителей Земли. С целью сотрудничества, разработки и прекращения распространения нового коронавируса по всему миру приложение COVTRACA предназначено для всех стран, чтобы позволить ученым, правительствам и неправительственным организациям изучать симптомы вируса и отслеживать его распространение.`,
+  ourStoryTwo: `Команда COVTRACA в настоящее время состоит из небольшой группы людей с разнообразными и актуальными навыками, которые чувствуют необходимость использовать эти навыки для служения человечеству, нашим семьям, друзьям, близким, сообществам, странам и мировому сообществу! Мы работаем над проектом с открытым исходным кодом, ориентированным на прозрачность и конфиденциальность, и стремимся работать открыто и прозрачно. Наши коды доступны для любого, кто может получить к ним доступ и использовать их любым способом, чтобы помочь сократить и в конечном итоге остановить распространение Коронавируса. Вместе мы можем минимизировать распространение, гибель и разрушения - как в нашей экономике, так и в повседневной жизни, вызванные пандемией COVID-19.`,
+  sending: "Отправка...",
+  loading: "загрузка...",
+  sendMessage: "Отправить сообщение",
+  joinTeam: "Присоединиться к нашей команде",
+  yourName: "Ваше имя",
+  yourEmail: "Ваш адрес электронной почты",
   yourMessage:
-    "Tell us how you can help us to collaborate in this project, what skills do you have?",
-  messageSended: "Message sent, we will contact you soon!"
+    "Расскажите, как вы можете помочь нам сотрудничать в этом проекте, какими навыками вы обладаете?",
+  messageSended: "Сообщение отправлено, мы скоро с вами свяжемся!",
+  covtracaUserReport: "Случаи, о которых сообщается из заявки из этой страны",
+  privacy: "Конфиденциальность",
+  socialGI: "GitHub",
+  socialFB: "Facebook",
+  socialTW: "щебет",
+  socialIN: "Instagram",
+  optionsText: "Опции",
+  downloadText: "Скачать",
+  followText: "Подписывайтесь на нас",
+  legalText: "легальный",
+  aboutTitle: "О CovTraca.org",
+  ourStoryTitle: "Наша история",
+  openComunity: "Открытое Сообщество",
+  openSource: "Открытый исходный код"
 };
 
 export default RU_messages;

@@ -43,33 +43,45 @@ const IN_messages = {
   timeout: "लोकेशन पाने में देरी",
   unknownError: "अज्ञात त्रुटि",
   descriptionApp: "लक्षण जांचने की ऐप्प",
-  aboutCovtraca: `Collaboration to slow the spread of COVID-19.<br/><br/>
-  COVTRACA is a privacy-first system for anonymous geolocation based COVID-19 symptom and
-  contact tracing, based on voluntary symptom sharing and or confirmed COVID-19 test results from
-  users.`,
-  ourStoryOne: `
-  COVTRACA is designed by an open community of global developers from the Harvard CS50 online
-  group to combat COVID-19 decimating earth’s citizens. With the intention to Collaborate, Develop and
-  Stop the spread of the novel Coronavirus across the globe, the COVTRACA app is designed for all
-  nations to enable scientists, governments and NGO’s to study the symptoms of the virus and track
-  how it spreads.`,
-  ourStoryTwo: `The COVTRACA team currently consists of a small group of individuals with diverse and relevant skills
-  who feel the need to put those skills to use in service of humanity, our families, friends, loved ones,
-  communities, countries and the global community! We operate a transparency and privacy-first open
-  source project and are committed to working openly and transparently. Our codes are available for
-  anyone to access and use in any way they can, to help reduce and ultimately, stop the spread of
-  Coronavirus. Together, we can to minimize the spread, death and disruption – in both our economies
-  and daily lives, caused by the COVID-19 pandemic.
+  aboutCovtraca: `सीओवीआईडी-19 के प्रसार को धीमा करने के लिए सहयोग।<br><br>
+  COVTRACA अनाम जियोलोकेशन आधारित COVID-19 लक्षण और संपर्क ट्रेसिंग के लिए एक गोपनीयता-पहली प्रणाली है, जो स्वैच्छिक लक्षण साझाकरण पर आधारित है और उपयोगकर्ताओं से COVID-19 परीक्षण परिणामों की पुष्टि करता है।`,
+  ourStoryOne: `COVTRACA को हार्वर्ड CS50 के वैश्विक डेवलपर्स के एक खुले समुदाय द्वारा ऑनलाइन डिज़ाइन किया गया है
+  COVID-19 को पृथ्वी के नागरिकों को नष्ट करने से निपटने के लिए समूह। सहयोग, विकास और करने के इरादे से
+  दुनिया भर में उपन्यास कोरोनावायरस के प्रसार को रोकें, COVTRACA ऐप सभी के लिए डिज़ाइन किया गया है
+  वैज्ञानिकों, सरकारों और एनजीओ को वायरस और ट्रैक के लक्षणों का अध्ययन करने में सक्षम करने के लिए राष्ट्र
+  यह कैसे फैलता है।`,
+  ourStoryTwo: `
+  COVTRACA टीम में वर्तमान में विविध और प्रासंगिक कौशल वाले व्यक्तियों का एक छोटा समूह है
+    जो मानवता, हमारे परिवारों, दोस्तों, प्रियजनों की सेवा में उपयोग करने के लिए उन कौशल को रखने की आवश्यकता महसूस करते हैं,
+    समुदायों, देशों और वैश्विक समुदाय! हम एक पारदर्शिता और गोपनीयता-प्रथम का संचालन करते हैं
+    स्रोत परियोजना और खुले और पारदर्शी तरीके से काम करने के लिए प्रतिबद्ध हैं। हमारे कोड उपलब्ध हैं
+    किसी को भी किसी भी तरह से उपयोग करने और उपयोग करने के लिए, कम करने और अंततः, के प्रसार को रोकने में मदद करने के लिए
+    कोरोनावाइरस। एक साथ, हम अपनी दोनों अर्थव्यवस्थाओं में प्रसार, मृत्यु और व्यवधान को कम कर सकते हैं
+    और COVID-19 महामारी के कारण दैनिक जीवन।
   `,
-  sending: "Sending...",
-  loading: "Loading...",
-  sendMessage: "Send message",
-  joinTeam: "Join our team",
-  yourName: "Your name",
-  yourEmail: "Your email",
+  sending: "भेजना...",
+  loading: "लोड हो रहा है...",
+  sendMessage: "मेसेज भेजें",
+  joinTeam: "हमारी टीम में शामिल हों",
+  yourName: "आपका नाम",
+  yourEmail: "तुम्हारा ईमेल",
   yourMessage:
-    "Tell us how you can help us to collaborate in this project, what skills do you have?",
-  messageSended: "Message sent, we will contact you soon!"
+    "हमें बताएं कि इस परियोजना में सहयोग करने के लिए आप हमारी क्या मदद कर सकते हैं, आपके पास क्या कौशल है?",
+  messageSended: "संदेश भेजा गया, हम जल्द ही आपसे संपर्क करेंगे!",
+  covtracaUserReport: "इस देश के आवेदन से प्राप्त मामले",
+  privacy: "एकांत",
+  socialGI: "GitHub",
+  socialFB: "फेसबुक",
+  socialTW: "ट्विटर",
+  socialIN: "इंस्टाग्राम",
+  optionsText: "विकल्प",
+  downloadText: "डाउनलोड",
+  followText: "हमारा अनुसरण करें",
+  legalText: "कानूनी",
+  aboutTitle: "CovTraca.org के बारे में",
+  ourStoryTitle: "हमारी कहानी",
+  openComunity: "खुला समुदाय",
+  openSource: "खुला स्त्रोत"
 };
 
 export default IN_messages;

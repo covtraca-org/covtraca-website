@@ -4,28 +4,28 @@
 			.container-fluid
 				.row
 					.col-lg-6.flex-center
-						h2.title-section About CovTraca.org
+						h2.title-section {{ $t('aboutTitle') }}
 						.description-section(v-html="$t('aboutCovtraca')")
 					.col-lg-6.flex-center
 						.image-description.is-colaborate
 		section.section-fully
 			.container-fluid
-				h2.title-section.center Our Story
+				h2.title-section.center {{ $t('ourStoryTitle') }}
 				.row.margin
 					.col-lg-6.flex-center.hidde-in-touch
 						.image-description.is-open
-							span Open Comunity
+							span {{ $t('openComunity') }}
 					.col-lg-6.flex-center
 						.description-section.with-bg.to-left(v-html="$t('ourStoryOne')")
 					.col-lg-6.flex-center.hidde-in-desktop
 						.image-description.is-open
-							span Open Comunity
+							span {{ $t('openComunity') }}
 				.row.margin
 					.col-lg-6.flex-center
 						.description-section.with-bg.to-right(v-html="$t('ourStoryTwo')")
 					.col-lg-6.flex-center
 						.image-description.is-open
-							span Open Source
+							span {{ $t('openSource') }}
 </template>
 
 <style lang="sass">

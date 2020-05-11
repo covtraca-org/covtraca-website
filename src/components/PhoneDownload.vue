@@ -35,11 +35,19 @@ export default {
   computed: {
     ...mapGetters(["getLang"]),
     hour() {
-      moment.locale(this.getLang);
+      if (this.getLang == "hi") {
+        moment.locale("en");
+      } else {
+        moment.locale(this.getLang);
+      }
       return moment().format("HH:mm");
     },
     day() {
-      moment.locale(this.getLang);
+      if (this.getLang == "hi") {
+        moment.locale("en");
+      } else {
+        moment.locale(this.getLang);
+      }
       return moment().format("MMM Do dddd");
     }
   },

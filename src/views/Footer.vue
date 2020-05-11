@@ -4,7 +4,7 @@
             .col-12.col-md.content-icon-cov
                 img.d-inline-block.align-top.icon-cov(src='/images/logo.svg', height='38rem', width='38rem', style='margin-top: unset;', alt='')                
             .col-6.col-md
-                h5 Options
+                h5 {{ $t('optionsText') }}
                 ul.list-unstyled.text-small.social
                     li
                         router-link.item-foot(to="/report")
@@ -17,49 +17,49 @@
                                 i.fas.fa-map-marked-alt
                             span {{ $t('viewMapButton') }}
             .col-6.col-md
-                h5 Download
+                h5 {{ $t('downloadText') }}
                 ul.list-unstyled.text-small.social
                     li
                         a.item-foot(href='#')
                             .social-icon
                                 i.fab.fa-google-play
-                            span Google Play
+                            span {{ $t('getIOSApp') }}
                     li
                         a.item-foot(href='#')
                             .social-icon
                                 i.fab.fa-apple
-                            span App Store
+                            span {{ $t('getAndroidApp') }}
             .col-6.col-md
-                h5 About
+                h5 {{ $t('followText') }}
                 ul.list-unstyled.text-small.social
                     li
                         a.item-foot(href="https://github.com/covtraca-org", target="_blank")
                             .social-icon
                                 i.fab.fa-github
-                            span Github
+                            span {{ $t('socialGI') }}
                     li
                         a.item-foot(href="https://facebook.com/covtraca", target="_blank")
                             .social-icon
                                 i.fab.fa-facebook-f
-                            span Facebook
+                            span {{ $t('socialFB') }}
                     li
                         a.item-foot(href="https://twitter.com/covTraca/", target="_blank")
                             .social-icon
                                 i.fab.fa-twitter
-                            span Twitter
+                            span {{ $t('socialTW') }}
                     li
                         a.item-foot(href="https://instagram.com/covtraca", target="_blank")
                             .social-icon
                                 i.fab.fa-instagram
-                            span Instragram
+                            span {{ $t('socialIN') }}
             .col-6.col-md
-                h5 Legal
+                h5 {{ $t('legalText') }}
                 ul.list-unstyled.text-small.social
                     li
                         a.item-foot(href="/docs/PrivacyNotice.pdf", target="_blank")
                             .social-icon
                                 i.fas.fa-balance-scale-right
-                            span Privacy
+                            span {{ $t('privacy') }}
 </template>
 <script>
 import { mapGetters } from "vuex";

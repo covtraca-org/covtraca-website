@@ -44,33 +44,33 @@ const JP_messages = {
   timeout: "ユーザーの位置を取得するリクエストがタイムアウトしました。",
   unknownError: "不明なエラーが発生しました。",
   descriptionApp: "症状トラッカー",
-  aboutCovtraca: `Collaboration to slow the spread of COVID-19.<br/><br/>
-  COVTRACA is a privacy-first system for anonymous geolocation based COVID-19 symptom and
-  contact tracing, based on voluntary symptom sharing and or confirmed COVID-19 test results from
-  users.`,
-  ourStoryOne: `
-  COVTRACA is designed by an open community of global developers from the Harvard CS50 online
-  group to combat COVID-19 decimating earth’s citizens. With the intention to Collaborate, Develop and
-  Stop the spread of the novel Coronavirus across the globe, the COVTRACA app is designed for all
-  nations to enable scientists, governments and NGO’s to study the symptoms of the virus and track
-  how it spreads.`,
-  ourStoryTwo: `The COVTRACA team currently consists of a small group of individuals with diverse and relevant skills
-  who feel the need to put those skills to use in service of humanity, our families, friends, loved ones,
-  communities, countries and the global community! We operate a transparency and privacy-first open
-  source project and are committed to working openly and transparently. Our codes are available for
-  anyone to access and use in any way they can, to help reduce and ultimately, stop the spread of
-  Coronavirus. Together, we can to minimize the spread, death and disruption – in both our economies
-  and daily lives, caused by the COVID-19 pandemic.
-  `,
-  sending: "Sending...",
-  loading: "Loading...",
-  sendMessage: "Send message",
-  joinTeam: "Join our team",
-  yourName: "Your name",
-  yourEmail: "Your email",
+  aboutCovtraca: `COVID-19の拡散を遅らせるコラボレーション。<br/> <br/>
+  COVTRACAは、自発的な症状の共有やユーザーからの確認されたCOVID-19テスト結果に基づく、匿名の地理位置情報に基づくCOVID-19症状と連絡先の追跡のためのプライバシーファーストシステムです。`,
+  ourStoryOne: `COVTRACAは、ハーバードCS50オンライングループのグローバルデベロッパーからなるオープンコミュニティによって設計され、COVID-19を破壊する地球の市民と戦います。 COVTRACAアプリは、世界中で新しいコロナウイルスの協力、開発、拡散を阻止することを目的としており、科学者、政府、NGOがウイルスの症状を調査し、ウイルスの拡散状況を追跡できるように、すべての国向けに設計されています。`,
+  ourStoryTwo: `COVTRACAチームは現在、人類、私たちの家族、友人、愛する人、コミュニティ、国、およびグローバルコミュニティの奉仕にこれらのスキルを使用する必要性を感じている、多様で関連性のあるスキルを持つ個人の小さなグループで構成されています！私たちは、透明性とプライバシーを第一に考えたオープンソースプロジェクトを運営しており、オープンで透明性のある作業に取り組んでいます。私たちのコードは、誰でもアクセスして使用できる方法で利用でき、コロナウイルスの蔓延を減らし、最終的には阻止するのに役立ちます。同時に、COVID-19のパンデミックによって引き起こされる、私たちの経済と日常生活の両方で、蔓延、死亡、混乱を最小限に抑えることができます。`,
+  sending: "送信...",
+  loading: "読み込み中...",
+  sendMessage: "メッセージを送る",
+  joinTeam: "私たちのチームに参加",
+  yourName: "あなたの名前",
+  yourEmail: "あなたのメール",
   yourMessage:
-    "Tell us how you can help us to collaborate in this project, what skills do you have?",
-  messageSended: "Message sent, we will contact you soon!"
+    "このプロジェクトで私たちがどのように協力できるようにすることができますか、どのようなスキルがありますか？",
+  messageSended: "メッセージを送信しました。すぐにご連絡いたします。",
+  covtracaUserReport: "この国の申請から報告された症例",
+  privacy: "プライバシー",
+  socialGI: "GitHub",
+  socialFB: "フェイスブック",
+  socialTW: "ツイッター",
+  socialIN: "インスタグラム",
+  optionsText: "オプション",
+  downloadText: "ダウンロード",
+  followText: "フォローする",
+  legalText: "法的",
+  aboutTitle: "CovTraca.orgについて",
+  ourStoryTitle: "私たちの物語",
+  openComunity: "オープンコミュニティ",
+  openSource: "オープンソース"
 };
 
 export default JP_messages;
